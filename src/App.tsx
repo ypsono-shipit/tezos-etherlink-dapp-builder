@@ -317,11 +317,11 @@ export default function App() {
             background: 'rgba(12,21,40,0.9)', border: '1px solid #1A2E52', borderRadius: 10,
             padding: tab === 'human' ? '13px 16px' : '16px',
             display: 'flex', alignItems: tab === 'human' ? 'center' : 'flex-start',
-            justifyContent: 'space-between', gap: 12, maxWidth: 680, backdropFilter: 'blur(8px)',
+            justifyContent: 'space-between', gap: 12, maxWidth: 800, backdropFilter: 'blur(8px)',
           }}>
             <div style={{ display: 'flex', alignItems: tab === 'human' ? 'center' : 'flex-start', gap: 10, flex: 1, minWidth: 0 }}>
               <span style={{ color: '#2C7DF7', fontFamily: 'monospace', fontSize: 13, flexShrink: 0 }}>$</span>
-              <pre style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: '#CBD5E1', whiteSpace: tab === 'human' ? 'nowrap' : 'pre-wrap', overflow: 'auto', margin: 0, flex: 1 }}>
+              <pre style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 13, color: '#CBD5E1', whiteSpace: tab === 'human' ? 'normal' : 'pre-wrap', overflow: 'visible', margin: 0, flex: 1 }}>
                 {copyText}
               </pre>
             </div>
