@@ -289,7 +289,7 @@ export default function App() {
           </h1>
           <p style={{ fontSize: 'clamp(15px, 2.5vw, 20px)', color: '#7A9CC4', lineHeight: 1.65, maxWidth: 600, marginBottom: 36, fontWeight: 400 }}>
             Pre-built skills for building on <span style={{ color: '#2C7DF7', fontWeight: 600 }}>Tezos L1</span> and <span style={{ color: '#10B981', fontWeight: 600 }}>Etherlink EVM</span>.
-            Drop them into your AI agent to write contracts, deploy, and bridge assets — for <span style={{ color: '#2C7DF7', fontWeight: 600 }}>Tezos L1</span> and <span style={{ color: '#10B981', fontWeight: 600 }}>Etherlink EVM</span>.
+            Drop them into your AI agent to write contracts, deploy, and bridge assets.
           </p>
 
           {/* Human / Agent toggle */}
