@@ -230,7 +230,6 @@ function SkillCard({ skill }: { skill: Skill }) {
 export default function App() {
   const [tab, setTab] = useState<Tab>('human')
 
-  const command = tab === 'human' ? NPX_HUMAN : NPX_AGENT
   const copyText = tab === 'human' ? NPX_HUMAN : NPX_AGENT
 
   return (
