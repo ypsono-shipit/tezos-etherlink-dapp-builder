@@ -113,18 +113,18 @@ const SHARED_SKILLS: Skill[] = [
 const CHAIN_CONFIG = {
   tezos: {
     label: 'Tezos L1',
-    color: '#7B5CF5',
-    dimColor: '#7B5CF520',
-    borderColor: '#7B5CF540',
+    color: '#2C7DF7',
+    dimColor: '#2C7DF720',
+    borderColor: '#2C7DF740',
     description: 'SmartPy / LIGO · Taquito · Beacon Wallet · FA2 tokens',
     skills: TEZOS_SKILLS,
     skillPath: 'skill/tezos/SKILL.md',
   },
   etherlink: {
     label: 'Etherlink EVM',
-    color: '#2C7DF7',
-    dimColor: '#2C7DF720',
-    borderColor: '#2C7DF740',
+    color: '#10B981',
+    dimColor: '#10B98120',
+    borderColor: '#10B98140',
     description: 'Solidity · Hardhat · viem · MetaMask · ERC standards',
     skills: ETHERLINK_SKILLS,
     skillPath: 'skill/etherlink/SKILL.md',
@@ -288,8 +288,8 @@ export default function App() {
             Agent Skills
           </h1>
           <p style={{ fontSize: 'clamp(15px, 2.5vw, 20px)', color: '#7A9CC4', lineHeight: 1.65, maxWidth: 600, marginBottom: 36, fontWeight: 400 }}>
-            Pre-built skills for building on <span style={{ color: '#7B5CF5', fontWeight: 600 }}>Tezos L1</span> and <span style={{ color: '#2C7DF7', fontWeight: 600 }}>Etherlink EVM</span>.
-            Drop them into your AI agent to write contracts, deploy, and bridge assets.
+            Pre-built skills for building on <span style={{ color: '#2C7DF7', fontWeight: 600 }}>Tezos L1</span> and <span style={{ color: '#10B981', fontWeight: 600 }}>Etherlink EVM</span>.
+            Drop them into your AI agent to write contracts, deploy, and bridge assets — for <span style={{ color: '#2C7DF7', fontWeight: 600 }}>Tezos L1</span> and <span style={{ color: '#10B981', fontWeight: 600 }}>Etherlink EVM</span>.
           </p>
 
           {/* Human / Agent toggle */}
