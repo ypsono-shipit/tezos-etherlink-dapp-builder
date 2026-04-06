@@ -60,7 +60,15 @@ See `references/viem-frontend-guide.md` for:
 - MetaMask wallet connection + chain switching
 - `import.meta.env` for contract address config
 
-### 4. Security & Deployment
+### 4. Gas & Fees — read before deploying
+Etherlink has a **two-part fee model**: execution gas + an L1 DA inclusion fee that scales with calldata size. Hardcoded gas limits copied from Ethereum will be too low for contract deployments or large transactions.
+
+- See `references/gas-and-fees.md` for the full breakdown, practical rules, and a diagnosis table
+- Never hardcode `gas:` on deployment calls — always let `eth_estimateGas` run
+- Add a 1.2–1.3× buffer if manually overriding gas on large deploys
+- Priority fees (`max_priority_fee_per_gas`) are **ignored** — sequencer is FCFS
+
+### 5. Security & Deployment
 - See `references/security-checklist.md` (Etherlink/Solidity-specific)
 - See `references/deployment-checklist.md` (Etherlink phases)
 
@@ -70,6 +78,7 @@ See `references/viem-frontend-guide.md` for:
 - Full EVM — same Solidity, same tooling, just different chain ID + RPC
 - No EIP-4844 blobs (it's a Smart Rollup, not an Optimistic/ZK rollup)
 - Finality inherits from Tezos L1 (~2 min)
+- **L1 DA inclusion fee** adds to every tx — `eth_estimateGas` includes it, but hardcoded limits won't (see `references/gas-and-fees.md`)
 
 ## Bridging from Tezos L1
 If the user needs Tezos L1 features too, see `../shared/bridging-xtz-fa-complete-guide.md`.
