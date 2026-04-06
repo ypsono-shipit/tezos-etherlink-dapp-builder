@@ -118,7 +118,7 @@ const CHAIN_CONFIG = {
     borderColor: '#2C7DF740',
     description: 'SmartPy / LIGO · Taquito · Beacon Wallet · FA2 tokens',
     skills: TEZOS_SKILLS,
-    skillPath: 'skill/tezos/SKILL.md',
+    skillPath: 'tezos/SKILL.md',
   },
   etherlink: {
     label: 'Etherlink EVM',
@@ -127,7 +127,7 @@ const CHAIN_CONFIG = {
     borderColor: '#10B98140',
     description: 'Solidity · Hardhat · viem · MetaMask · ERC standards',
     skills: ETHERLINK_SKILLS,
-    skillPath: 'skill/etherlink/SKILL.md',
+    skillPath: 'etherlink/SKILL.md',
   },
   shared: {
     label: 'Shared',
@@ -136,7 +136,7 @@ const CHAIN_CONFIG = {
     borderColor: '#F59E0B40',
     description: 'Bridging · Architecture comparison · Cross-chain patterns',
     skills: SHARED_SKILLS,
-    skillPath: 'skill/SKILL.md',
+    skillPath: 'SKILL.md',
   },
 }
 
