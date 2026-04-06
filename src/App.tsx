@@ -78,6 +78,13 @@ const ETHERLINK_SKILLS: Skill[] = [
     path: 'etherlink/references/viem-frontend-guide.md',
   },
   {
+    category: 'GAS & FEES',
+    categoryColor: '#F59E0B',
+    title: 'Gas & Fees',
+    description: 'Etherlink two-part fee model: execution gas + L1 DA inclusion fee. Why hardcoded gas limits fail on large deploys, how eth_estimateGas bundles both, and safe buffer rules.',
+    path: 'etherlink/references/gas-and-fees.md',
+  },
+  {
     category: 'SECURITY',
     categoryColor: '#EF4444',
     title: 'Security Checklist',
