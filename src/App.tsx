@@ -380,7 +380,7 @@ export default function App() {
                 color: chainTab === key ? cfg.color : '#4A6A94',
                 borderRadius: 20, padding: '1px 8px', fontSize: 11,
               }}>
-                {cfg.skills.length}
+                {key === 'tezos' ? 'WIP' : cfg.skills.length}
               </span>
             </button>
           ))}
@@ -415,11 +415,35 @@ export default function App() {
         </div>
 
         {/* Skills grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 18 }}>
-          {chain.skills.map(skill => (
-            <SkillCard key={skill.path} skill={skill} accentColor={chain.color} />
-          ))}
-        </div>
+        {chainTab === 'tezos' ? (
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            gap: 16, padding: '72px 32px',
+            background: '#0C1528', border: '1px solid #1A2E52', borderRadius: 12,
+          }}>
+            <div style={{ fontSize: 40 }}>🚧</div>
+            <h3 style={{ fontSize: 22, fontWeight: 700, color: '#fff', margin: 0 }}>Under Construction</h3>
+            <p style={{ fontSize: 15, color: '#7A9CC4', maxWidth: 420, textAlign: 'center', lineHeight: 1.6, margin: 0 }}>
+              Tezos L1 skills are being written and reviewed. Check back soon — Etherlink skills are ready to use now.
+            </p>
+            <button
+              onClick={() => setChainTab('etherlink')}
+              style={{
+                marginTop: 8, padding: '9px 22px', borderRadius: 8,
+                background: '#10B98118', border: '1px solid #10B98140',
+                color: '#10B981', fontSize: 14, fontWeight: 600, cursor: 'pointer',
+              }}
+            >
+              View Etherlink Skills →
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 18 }}>
+            {chain.skills.map(skill => (
+              <SkillCard key={skill.path} skill={skill} accentColor={chain.color} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Install CTA */}
