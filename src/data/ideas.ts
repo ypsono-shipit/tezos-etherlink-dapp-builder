@@ -6,7 +6,7 @@ export type Idea = {
   d: string
   dir: IdeaDir
   lvl: IdeaLevel
-  icon: 'ticket' | 'image' | 'bar' | 'repeat' | 'landmark' | 'zap' | 'shield' | 'vote' | 'activity' | 'game' | 'building' | 'send'
+  icon: 'wallet' | 'image' | 'bar' | 'repeat' | 'landmark' | 'zap' | 'shield' | 'vote' | 'activity' | 'game' | 'building' | 'send'
 }
 
 export const DIR_LABEL: Record<IdeaDir, string> = {
@@ -16,7 +16,7 @@ export const DIR_LABEL: Record<IdeaDir, string> = {
 }
 
 export const IDEAS: Idea[] = [
-  { t: 'Pay with anything ticketing', d: 'MetaMask user pays in USDC, Michelson ticket contract priced in tez issues the ticket in one tx.', dir: 'e2m', lvl: 'Beginner', icon: 'ticket' },
+  { t: 'Tezos wallet calls EVM DeFi', d: 'A Michelson account calls an EVM pool or lending contract through the gateway. The tez move and the EVM call commit together, or both revert.', dir: 'm2e', lvl: 'Beginner', icon: 'wallet' },
   { t: 'One click FA2 NFT checkout', d: 'Buy a Michelson FA2 NFT from any EVM wallet; payment and transfer settle together or not at all.', dir: 'e2m', lvl: 'Beginner', icon: 'image' },
   { t: 'Prediction market, both wallets', d: 'Market logic in Michelson, bets placed from Solidity frontends; payouts can\'t half settle.', dir: 'e2m', lvl: 'Beginner', icon: 'bar' },
   { t: 'Cross runtime swap router', d: 'Swap on the EVM DEX and deposit the output into a Michelson vault in one atomic route.', dir: 'both', lvl: 'Intermediate', icon: 'repeat' },

@@ -63,3 +63,4 @@ Verified November 22, 2026.
 
 - https://docs.etherlink.com/tutorials/nac-counter
 - https://github.com/trilitech/tezos-x-previewnet
+- https://github.com/trilitech/tezos-x-previewnet/blob/main/README.md

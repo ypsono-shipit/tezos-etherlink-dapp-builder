@@ -109,3 +109,5 @@ Verified November 22, 2026.
 - https://octez-js.tezos.com/typedoc/functions/_tezos-x_octez.js-utils.buildEvmToMichelsonCall.html
 - https://octez-js.tezos.com/typedoc/functions/_tezos-x_octez.js-utils.buildMichelsonToEvmCall.html
 - https://docs.etherlink.com/tutorials/nac-counter
+- https://github.com/trilitech/tezos-x-previewnet
+- https://github.com/trilitech/tezos-x-previewnet/blob/main/README.md

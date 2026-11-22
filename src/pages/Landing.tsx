@@ -15,7 +15,7 @@ const SKILL_ROWS = [
 ]
 
 export default function Landing() {
-  const featured = IDEAS.filter((idea) => ['Pay with anything ticketing', 'Cross runtime swap router', 'Cross runtime flash arbitrage'].includes(idea.t))
+  const featured = IDEAS.filter((idea) => ['Tezos wallet calls EVM DeFi', 'Cross runtime swap router', 'Cross runtime flash arbitrage'].includes(idea.t))
   return (
     <Marketing title="Build on Tezos X | Hackathon">
       <section id="hero" className="relative min-h-[780px] md:min-h-[860px] flex items-center pb-36 md:pb-44">

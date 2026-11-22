@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { Activity, ArrowRight, BarChart3, Building2, Gamepad2, Image, Landmark, Repeat, Send, ShieldCheck, Ticket, Vote, Zap } from 'lucide-react'
+import { Activity, ArrowRight, BarChart3, Building2, Gamepad2, Image, Landmark, Repeat, Send, ShieldCheck, Vote, Wallet, Zap } from 'lucide-react'
 import { DIR_LABEL, LEVEL_CLASS, type Idea } from '../data/ideas.ts'
 
 const ICONS = {
-  ticket: Ticket,
+  wallet: Wallet,
   image: Image,
   bar: BarChart3,
   repeat: Repeat,

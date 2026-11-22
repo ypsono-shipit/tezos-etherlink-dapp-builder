@@ -1,6 +1,12 @@
 # Tezos X network info
 
-Canonical Previewnet values come from the trilitech previewnet repo. Michelson interface endpoints for the other networks come from the octez.js Tezos X support page. Both were read on November 22, 2026.
+Previewnet identifiers below were checked against the official repository on November 22, 2026. That repository contains only `README.md`. There is no `docs/` directory. Every chain id, RPC, faucet, bridge, explorer, rollup address, L1 bridge contract, and wallet field in this Previewnet section matches that README. Nothing in those fields was changed.
+
+The README prints the EVM chain id as decimal `128064`. `0x1f440` is that same integer in hex, used by `wallet_addEthereumChain`. It is not a different chain id.
+
+The README does not publish the NAC precompile, the Michelson gateway address, or kernel v0.11. Those stay in `nac-cross-runtime-calls.md`, sourced from Etherlink docs, octez.js, and the Previewnet dashboard, not from this repo.
+
+Michelson interface endpoints for Etherlink mainnet and Shadownet come from the octez.js Tezos X support page. They are not in the previewnet README.
 
 ## Previewnet
 
@@ -78,8 +84,9 @@ The Michelson overview on docs.etherlink.com (updated November 19, 2026) describ
 
 ## Sources and last verified
 
-Verified November 22, 2026.
+Previewnet section re-read from the official repo on November 22, 2026. The repository root is only `README.md`.
 
+- https://github.com/trilitech/tezos-x-previewnet
 - https://github.com/trilitech/tezos-x-previewnet/blob/main/README.md
 - https://previewnet.tezosx.nomadic-labs.com/
 - https://octez-js.tezos.com/docs/25.0.0/tezosx_support/

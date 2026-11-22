@@ -2,6 +2,8 @@
 
 Summary of docs.etherlink.com "Native Atomic Composability" (updated November 20, 2026), the octez.js cross-runtime page, the Previewnet kernel changelog, and the NAC counter tutorial. Where those sources disagree, the note says so.
 
+The official previewnet repository (README only, re-read November 22, 2026) does not list the precompile, the gateway, or kernel v0.11. The addresses and the v0.11 notes below were not taken from that README, and they were not edited in the README re-check. Chain ids and RPCs that the README does publish are in `tezos-x-network-info.md` and already match it.
+
 ## What a call is
 
 Each interface has one gateway. A cross-interface call is a normal call to that local address. No compiler plugin is required.
@@ -76,6 +78,8 @@ Verified November 22, 2026.
 - https://docs.etherlink.com/michelson/developing/compatibility
 - https://docs.etherlink.com/overview/accounts-and-aliases
 - https://octez-js.tezos.com/docs/25.0.0/tezosx_cross_runtime/
+- https://github.com/trilitech/tezos-x-previewnet
+- https://github.com/trilitech/tezos-x-previewnet/blob/main/README.md
 - https://github.com/trilitech/octez.js/blob/4e978e9b925d74583c04a8230567c8ba514af715/packages/octez.js-utils/src/tezosx/constants.ts
 - https://previewnet.tezosx.nomadic-labs.com/
 - https://gitlab.com/tezos/tezos/-/merge_requests/22932

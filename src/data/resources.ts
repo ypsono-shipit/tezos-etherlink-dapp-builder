@@ -209,7 +209,7 @@ export const RESOURCES: Resource[] = [
     "s": "Nomadic Labs",
     "d": "Testnet XTZ for 0x and tz1 addresses.",
     "ty": "Tool",
-    "u": "https://faucet.previewnet.tezosx.nomadic-labs.com/"
+    "u": "https://faucet.previewnet.tezosx.nomadic-labs.com"
   },
   {
     "g": "Network & tools",
@@ -303,7 +303,7 @@ export const RESOURCES: Resource[] = [
     "g": "Articles & announcements",
     "t": "Introducing Tezos X Previewnet",
     "s": "Tezos Spotlight",
-    "d": "Launch post: one shared ledger, NAC, the ticketing example.",
+    "d": "Launch post: one shared ledger and native atomic composability.",
     "ty": "Article",
     "u": "https://spotlight.tezos.com/introducing-tezos-x-previewnet/"
   },

@@ -23,7 +23,7 @@ Use this sub-skill when a contract on one interface must call a contract on the 
 3. EVM → Michelson goes to precompile `0xff00000000000000000000000000000000000007`. Michelson → EVM goes to `KT18oDJJKXMKhfE1bSuAPGp92pYcwVDiqsPw`.
 4. 1 mutez = 10^12 wei. Amounts that are not a whole number of mutez are rejected by octez.js (`SubMutezPrecisionError`).
 5. Do not hardcode an EVM alias captured before the November 9, 2026 Previewnet kernel (v0.11). Derivation changed.
-6. Tickets, Sapling, timelocks, global constants, and `tz4` accounts are not available on the Michelson interface yet. Do not port L1 ticket code onto Tezos X until the compatibility page says otherwise.
+6. Tickets, Sapling, timelocks, global constants, and `tz4` accounts are not available on the Michelson interface yet. Do not propose a ticket contract, a ticket checkout, or any other ticket issuance idea for Tezos X. Hackathon builds should use `callMichelson`, `%call_evm`, FA2, or a read only view. A Michelson account calling an EVM pool in one operation is in scope. A ticket is not.
 7. `SOURCE` on a cross-interface call is the null address `tz1Ke2h7sDdakHJQh8WX4Z372du1KChsksyU`, not the EVM alias. Do not use `SENDER == SELF_ADDRESS` as an auth check.
 
 ## Sources and last verified
@@ -36,4 +36,5 @@ Verified November 22, 2026.
 - https://octez-js.tezos.com/docs/25.0.0/tezosx_support/
 - https://octez-js.tezos.com/docs/25.0.0/tezosx_cross_runtime/
 - https://github.com/trilitech/tezos-x-previewnet
+- https://github.com/trilitech/tezos-x-previewnet/blob/main/README.md
 - https://previewnet.tezosx.nomadic-labs.com/

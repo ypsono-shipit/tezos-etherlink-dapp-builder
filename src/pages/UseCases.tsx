@@ -46,7 +46,7 @@ export default function UseCases() {
           ) : (
             <div className="text-muted">No ideas match.</div>
           )}
-          <p className="text-xs text-muted mt-6">Ideas are suggestions for the hackathon, not existing products. The ticketing example comes from the official Previewnet announcement.</p>
+          <p className="text-xs text-muted mt-6">Ideas are suggestions for the hackathon, not existing products. Each one uses a gateway call that works on Previewnet today.</p>
         </div>
       </section>
       <section className="relative py-10">
