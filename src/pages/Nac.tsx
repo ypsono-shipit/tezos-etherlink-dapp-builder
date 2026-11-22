@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Box, Check, GitMerge, Hexagon, Plus, RotateCcw, Wallet } from 'lucide-react'
 import { Marketing, Wave } from '../components/ui.tsx'
@@ -27,10 +27,40 @@ const FAQ = [
   { q: 'Can Previewnet be reset?', a: 'Yes. It was reset on July 20, 2026. Check the Previewnet dashboard changelog before relying on deployed state.' },
 ]
 
+function useFlowPhase(dir: Dir, fail: boolean) {
+  const [phase, setPhase] = useState(0)
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (media.matches) return
+    const id = window.setInterval(() => setPhase((value) => value + 1), 800)
+    return () => window.clearInterval(id)
+  }, [dir, fail])
+
+  const forward = dir === 'e2m'
+  const boxes = forward ? [0, 1, 2, 3] : [3, 2, 1, 0]
+  const failing = forward ? 3 : 0
+  const playable = fail ? boxes.slice(0, 3) : boxes
+  const active = playable[phase % playable.length]
+  const next = playable[playable.indexOf(active) + 1]
+  const liveLink = next == null ? -1 : Math.min(active, next)
+  const dimLink = fail ? (forward ? 2 : 0) : -1
+  return { active, liveLink, dimLink, forward, failing }
+}
+
+function FlowLink({ forward, live, dim }: { forward: boolean; live: boolean; dim: boolean }) {
+  const state = dim ? 'dim' : live ? 'live' : 'idle'
+  return (
+    <div className={`flow-link ${forward ? 'forward' : 'reverse'} ${state}`} aria-hidden="true">
+      <span className="flow-link-track" />
+    </div>
+  )
+}
+
 export default function Nac() {
   const [dir, setDir] = useState<Dir>('e2m')
   const [fail, setFail] = useState(false)
   const [metric, setMetric] = useState<Metric>('tx')
+  const flow = useFlowPhase(dir, fail)
   const heights = metric === 'tx' ? [86, 48, 14] : [70, 92, 8]
   const tip = metric === 'tx' ? '1 tx · atomic' : 'same block · ~500 ms'
   return (
@@ -68,13 +98,18 @@ export default function Nac() {
                   </span>
                 </button>
               </div>
-              <div className="relative">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-0 items-stretch">
-                  {STEPS[dir].map((step, index) => {
-                    const meta = STEP_META[index]
-                    const Icon = meta.icon
-                    return (
-                      <div key={meta.n} className={`glass-soft p-3.5 md:p-4 flex md:flex-col md:items-start items-center gap-3 ${index === 0 ? 'md:mr-3' : index === 3 ? 'md:ml-3' : 'md:mx-1.5'} ${index === 2 ? 'ring-1 ring-azure/40' : ''} ${fail && index === 3 ? 'border border-white/60' : ''}`}>
+              <div className="flow-row">
+                {STEPS[dir].map((step, index) => {
+                  const meta = STEP_META[index]
+                  const Icon = meta.icon
+                  const live = index === flow.active
+                  const failed = fail && index === flow.failing
+                  return (
+                    <div key={meta.n} className="flow-step">
+                      {index > 0 ? (
+                        <FlowLink forward={flow.forward} live={flow.liveLink === index - 1} dim={flow.dimLink === index - 1} />
+                      ) : null}
+                      <div className={`flow-box glass-soft p-3.5 md:p-4 flex md:flex-col md:items-start items-center gap-3 ${live ? 'is-live' : ''} ${failed ? 'is-failed' : ''}`}>
                         <span className={`icon-c ${meta.bubble} md:mb-3`}><Icon className="w-5 h-5" /></span>
                         <div className="flex-1">
                           <div className={`text-[11px] mb-2 ${meta.azure ? 'text-azure' : 'text-muted'}`}>{meta.n}</div>
@@ -82,12 +117,9 @@ export default function Nac() {
                           <div className={`text-xs text-muted ${index === 2 ? 'mono text-[11px]' : ''}`}>{step[1]}</div>
                         </div>
                       </div>
-                    )
-                  })}
-                </div>
-                <svg className="hidden md:block absolute left-0 right-0 top-[56px] w-full h-6 pointer-events-none" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true">
-                  <line x1="20" y1="3" x2="82" y2="3" stroke="#7fa8ff" className="flow-line" />
-                </svg>
+                    </div>
+                  )
+                })}
               </div>
               <div className="mt-5 glass-soft p-4 flex items-center gap-4">
                 <span className={`icon-c ${fail ? 'bg-white text-ink' : 'bg-royal text-white'}`}>

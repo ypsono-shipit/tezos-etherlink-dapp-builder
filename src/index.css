@@ -111,8 +111,47 @@ code, .mono { font-family: 'JetBrains Mono', monospace; }
   50% { box-shadow: 0 0 0 10px rgba(127, 168, 255, 0); }
 }
 .pulse { animation: pulse 2.2s infinite; }
-.flow-line { stroke-dasharray: 6 6; animation: dash 1.2s linear infinite; }
-@keyframes dash { to { stroke-dashoffset: -24; } }
+.flow-row { display: flex; flex-direction: column; }
+.flow-step { display: flex; flex-direction: column; min-width: 0; }
+.flow-box { min-width: 0; transition: box-shadow .2s; }
+.flow-box.is-live { box-shadow: 0 0 0 1px #7fa8ff; }
+.flow-box.is-failed { box-shadow: 0 0 0 1px rgba(255, 255, 255, .6); }
+.flow-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  flex: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+.flow-link-track {
+  width: 2px;
+  height: 16px;
+  border-radius: 999px;
+  background-image: repeating-linear-gradient(to bottom, #7fa8ff 0 4px, transparent 4px 8px);
+  background-size: 2px 16px;
+  animation: flow-y .7s linear infinite;
+}
+.flow-link.reverse .flow-link-track { animation-direction: reverse; }
+.flow-link.idle .flow-link-track { animation: none; opacity: .4; }
+.flow-link.dim .flow-link-track { animation: none; opacity: .22; background-image: linear-gradient(#7fa8ff, #7fa8ff); }
+@media (min-width: 768px) {
+  .flow-row { flex-direction: row; align-items: stretch; }
+  .flow-step { flex: 1; flex-direction: row; align-items: center; }
+  .flow-box { flex: 1; align-self: stretch; }
+  .flow-link { width: 16px; height: auto; align-self: center; }
+  .flow-link-track {
+    width: 16px;
+    height: 2px;
+    background-image: repeating-linear-gradient(to right, #7fa8ff 0 4px, transparent 4px 8px);
+    background-size: 16px 2px;
+    animation-name: flow-x;
+  }
+  .flow-link.dim .flow-link-track { background-image: linear-gradient(#7fa8ff, #7fa8ff); }
+}
+@keyframes flow-x { to { background-position: 16px 0; } }
+@keyframes flow-y { to { background-position: 0 16px; } }
 .tabbar {
   background: rgba(14, 17, 28, .82);
   backdrop-filter: blur(20px);
@@ -223,7 +262,7 @@ summary { list-style: none; }
 }
 .hero-logo-still { display: none; }
 @media (prefers-reduced-motion: reduce) {
-  .pulse, .wave i, .flow-line { animation: none; }
+  .pulse, .wave i, .flow-link-track { animation: none; }
   html { scroll-behavior: auto; }
   .hero-logo video { display: none; }
   .hero-logo-still { display: block; }
