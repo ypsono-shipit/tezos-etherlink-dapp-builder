@@ -40,6 +40,13 @@
 - [ ] Simulate multiple users in a scenario
 
 ## Deployment
-- [ ] Use Ghostnet for full end-to-end testing before mainnet
+- [ ] Use Shadownet for full end-to-end testing before mainnet. Ghostnet has been removed.
+
+## Sources and last verified
+
+Verified November 22, 2026. The checklist items above are L1 review practice carried forward from the April 2026 skill; the testnet name was updated from the docs.
+
+- https://docs.tezos.com/developing/testnets
+- https://docs.etherlink.com/michelson/developing/compatibility
 - [ ] Verify contract on TzKT explorer after deployment
 - [ ] Record contract address and storage initial state

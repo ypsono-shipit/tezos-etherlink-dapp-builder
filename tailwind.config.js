@@ -4,19 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        tezos: {
-          blue:    '#2C7DF7',
-          cyan:    '#00C2FF',
-          dark:    '#060D1F',
-          card:    '#0C1528',
-          border:  '#1A2E52',
-          muted:   '#7A9CC4',
-        }
+        ink: '#0b0d14',
+        ink2: '#10131d',
+        navy: '#141a2e',
+        azure: '#7fa8ff',
+        royal: '#2f5bff',
+        muted: '#8a90a6',
+        ice: '#c7d6ff',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-      }
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      },
     },
   },
   plugins: [],

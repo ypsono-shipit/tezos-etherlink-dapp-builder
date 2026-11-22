@@ -128,3 +128,12 @@ const list = (raw as unknown as MyType[]).map(item => ({
 - `uint256` in ABI returns as `bigint` — always convert with `Number()` or `BigInt()`
 - Chain ID `0xa729` = `42793` decimal (Etherlink mainnet)
 - Chain ID `0x1f3af` = `127823` decimal (Shadownet)
+
+## Sources and last verified
+
+Verified November 22, 2026. Procedural steps in this file were carried forward from the April 2026 skill and were not re-derived line by line. Network names were updated where the file is a checklist that used to say Ghostnet. Prefer the live doc if a command disagrees.
+
+- https://docs.etherlink.com/
+- https://docs.tezos.com/
+- https://octez-js.tezos.com/docs/25.0.0/migration_from_taquito/
+- https://docs.etherlink.com/michelson/developing/compatibility

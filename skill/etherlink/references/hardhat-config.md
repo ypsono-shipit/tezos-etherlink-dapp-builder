@@ -148,3 +148,12 @@ npm run deploy:mainnet
 | `hardhat-toolbox does not work with Hardhat 2` | Install `@nomicfoundation/hardhat-toolbox@hh2` not `latest` |
 | `No Hardhat config file found` | Run from the project root directory where `hardhat.config.js` lives |
 | Node version error | Upgrade to Node v22+ |
+
+## Sources and last verified
+
+Verified November 22, 2026. Procedural steps in this file were carried forward from the April 2026 skill and were not re-derived line by line. Network names were updated where the file is a checklist that used to say Ghostnet. Prefer the live doc if a command disagrees.
+
+- https://docs.etherlink.com/
+- https://docs.tezos.com/
+- https://octez-js.tezos.com/docs/25.0.0/migration_from_taquito/
+- https://docs.etherlink.com/michelson/developing/compatibility

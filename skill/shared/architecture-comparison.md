@@ -1,57 +1,54 @@
-# Tezos L1 vs Etherlink: Architecture Comparison
+# Tezos L1, Etherlink EVM, and Tezos X
 
-## At a Glance
+Checked against docs.etherlink.com (architecture and "What is Etherlink?", November 20, 2026), docs.tezos.com testnets, the Michelson compatibility page (November 20, 2026), and octez.js Tezos X support. L1 block time was not re-measured; the old "~15 seconds" figure is left as a hint and should be confirmed on docs.tezos.com.
 
-| Aspect            | Tezos L1                          | Etherlink (EVM L2)                    | Recommendation                        |
-|-------------------|-----------------------------------|---------------------------------------|---------------------------------------|
-| Language          | SmartPy / LIGO / Michelson        | Solidity (any EVM version)            | Etherlink for EVM devs                |
-| Block Time        | ~15 seconds                       | 500ms – 6s (variable)                 | Etherlink for latency-sensitive apps  |
-| Finality          | ~2 minutes (BFT)                  | Inherits Tezos L1 (~2 min)            | Similar security model                |
-| Tooling           | Taqueria, Taquito, octez-client   | Hardhat, Foundry, Remix, viem         | Etherlink for Ethereum ecosystem      |
-| Native Assets     | XTZ, FA1.2, FA2 tokens            | WXTZ (wrapped), ERC-20/721/1155       | L1 for native tokens, bridge as needed|
-| Gas / Fees        | Low, predictable (storage burn)   | Low (XTZ as gas, EVM pricing)         | Both are affordable                   |
-| EVM Compatible    | No                                | Yes (full EVM)                        | Etherlink for Solidity contracts      |
-| Tickets           | Yes (native L1 feature)           | No (bridge uses tickets internally)   | L1 for ticket-based logic             |
-| Governance        | On-chain (LB, protocol votes)     | Governed by Tezos L1 validators       | L1 for governance logic               |
-| Wallet Support    | Beacon (Temple, Kukai, etc.)      | MetaMask, WalletConnect, Rabby        | Depends on user base                  |
-| Indexers          | TzKT, TzPro                       | Etherlink Explorer API                | Good coverage on both                 |
-| Smart Rollups     | N/A (L1)                          | Built on Tezos Smart Rollups          | L2 security guaranteed by L1          |
+## At a glance
 
-## When to Choose Etherlink
-- You or your team knows Solidity
-- You need ERC-20 / ERC-721 / ERC-1155 compatibility
-- You want to re-use existing Ethereum contracts with minimal changes
-- You need high throughput (DeFi, gaming, high-frequency interactions)
-- You want MetaMask / WalletConnect out of the box
+| Aspect | Tezos L1 | Etherlink EVM interface | Tezos X (both interfaces) |
+|---|---|---|---|
+| Language | SmartPy / LIGO / Michelson | Solidity | Both, in one transaction via NAC |
+| Block time | See docs.tezos.com (this file used to say ~15 s) | About 500 ms, preconfirmation about 50 ms | Same kernel as Etherlink, about 500 ms |
+| Settlement | L1 consensus | About 6 seconds on L1 (docs table) | Same as Etherlink |
+| Tooling | Taqueria, octez.js or Taquito, octez-client | Hardhat, Foundry, Remix, viem | Those plus `@tezos-x/octez.js-utils` |
+| Native asset | XTZ, FA1.2, FA2 | XTZ (18 decimals) and ERC20/721/1155 | Same ledger. No wrapped copy for a NAC call |
+| Tickets | Yes | Not on the Michelson interface yet | Not yet. Do not design around tickets |
+| Governance | Onchain protocol governance | Governed on L1. `VOTING_POWER` is 0 | Same as Etherlink |
+| Wallets | Beacon (Temple, Kukai, Umami) | MetaMask, WalletConnect, Rabby | Usually one of each, separate balances |
+| When | L1 assets, tickets, L1 votes | Solidity only | The call itself must be atomic across interfaces |
 
-## When to Choose Tezos L1
-- You need native XTZ transfers within contracts
-- You're building with FA1.2 or FA2 token standards
-- You want on-chain governance or DAO mechanics
-- You need Michelson tickets (advanced asset ownership)
-- Your users already use Beacon-compatible wallets
+Moving XTZ or FA tokens between L1 and Etherlink is a bridge (two ledgers, not atomic). NAC is intra-Etherlink only. The architecture page's comparison table: a bridge is 2 or more transactions and is not all or nothing; NAC is 1 transaction, same block, native tokens, no extra trust because it is the same kernel.
 
-## Hybrid Architecture (Recommended for Most Production Apps)
+## When to choose Etherlink EVM only
+- The team knows Solidity and does not need Michelson in the same transaction
+- ERC20 / ERC721 / ERC1155
+- MetaMask without a Tezos wallet
+
+## When to choose Tezos L1
+- Native L1 XTZ, FA tokens, or tickets
+- Protocol governance or a contract that must be originated on L1
+- Users are already on Beacon wallets and the app never touches EVM
+
+## When to choose Tezos X
+- One user action must update EVM state and Michelson state together
+- You want a Solidity door on a Michelson core, or the reverse
+- You are on Previewnet for the hackathon, or on Etherlink mainnet after Ganesha
+
+## Hybrid that is still a bridge
 
 ```
-User (MetaMask) ←→ Etherlink Frontend
-                         ↕ (viem / ethers)
-                   Etherlink Contracts
-                         ↕ (Official Bridge)
-                    Tezos L1 Contracts
-                         ↕ (Taquito)
-User (Beacon Wallet) ←→ Tezos L1 Frontend
+User (MetaMask) → Etherlink EVM contracts
+                      ↕ official L1 bridge (not NAC)
+User (Beacon)   → Tezos L1 contracts
 ```
 
-### Example Hybrid: NFT Marketplace
-- **Minting & trading** → Etherlink (ERC-721, familiar UX, MetaMask)
-- **Governance & royalties** → Tezos L1 (FA2, on-chain votes)
-- **Bridging** → Official bridge for moving assets between layers
+Use this when the asset has to leave the rollup. Use NAC when both contracts are already on the rollup.
 
-### Example Hybrid: DeFi Protocol
-- **AMM / liquidity pools** → Etherlink (Solidity, composable with EVM DeFi)
-- **Staking rewards in XTZ** → Tezos L1 (native XTZ, lower overhead)
-- **Bridge flow** → Users deposit XTZ to Etherlink, earn yield, withdraw
+## Sources and last verified
 
-## Data Availability & Security
-Both chains share the same underlying security: Etherlink is a **Tezos Smart Rollup**, meaning its state is verified and settled on Tezos L1. This gives Etherlink EVM apps L1-level security guarantees without L1 throughput limits.
+Verified November 22, 2026. L1 block time was not rechecked.
+
+- https://docs.etherlink.com/
+- https://docs.etherlink.com/overview/architecture
+- https://docs.etherlink.com/michelson/developing/compatibility
+- https://docs.tezos.com/developing/testnets
+- https://octez-js.tezos.com/docs/25.0.0/tezosx_support/

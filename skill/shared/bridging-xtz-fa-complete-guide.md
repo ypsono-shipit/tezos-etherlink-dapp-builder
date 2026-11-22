@@ -1,4 +1,8 @@
-# Bridging XTZ & FA Tokens: L1 ↔ Etherlink Complete Guide
+# Bridging XTZ and FA tokens between L1 and Etherlink
+
+This is a bridge between two ledgers. It is not native atomic composability. A Solidity contract calling Michelson on Tezos X does not use this guide. See `../tezos-x/SKILL.md`.
+
+The deposit contract address below (`KT1VsSxSXUkgw6zkBGgUuDXXuJs9ToPqkrCg`) is the value stored in the April 2026 skill. It was **not** reconfirmed against docs.etherlink.com on November 22, 2026. Read the current bridging page before sending funds.
 
 ## Official Bridge UI
 - **Mainnet**: https://bridge.etherlink.com/tezos
@@ -17,7 +21,8 @@
 
 ## Programmatic XTZ Deposit (L1 → Etherlink)
 ```typescript
-import { TezosToolkit } from '@taquito/taquito';
+import { TezosToolkit } from '@tezos-x/octez.js';
+// L1-only alternative: import { TezosToolkit } from '@taquito/taquito';
 
 const BRIDGE_DEPOSIT_CONTRACT = 'KT1VsSxSXUkgw6zkBGgUuDXXuJs9ToPqkrCg'; // mainnet
 
@@ -76,3 +81,12 @@ async function waitForDeposit(address: `0x${string}`, expectedMinBalance: bigint
 - Standard withdrawals are the most secure (no trusted intermediary)
 - Fast withdrawals depend on liquidity provider availability
 - Verify bridge contract addresses from the official Etherlink docs
+
+## Sources and last verified
+
+Verified November 22, 2026. Procedural steps in this file were carried forward from the April 2026 skill and were not re-derived line by line. Network names were updated where the file is a checklist that used to say Ghostnet. Prefer the live doc if a command disagrees.
+
+- https://docs.etherlink.com/
+- https://docs.tezos.com/
+- https://octez-js.tezos.com/docs/25.0.0/migration_from_taquito/
+- https://docs.etherlink.com/michelson/developing/compatibility
