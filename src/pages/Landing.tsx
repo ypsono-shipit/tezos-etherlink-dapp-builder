@@ -17,7 +17,7 @@ const SKILL_ROWS = [
 export default function Landing() {
   const featured = IDEAS.filter((idea) => ['Tezos wallet calls EVM DeFi', 'Cross runtime swap router', 'Cross runtime flash arbitrage'].includes(idea.t))
   return (
-    <Marketing title="Build on Tezos X | Hackathon">
+    <Marketing title="Build on Tezos X | Builders’ Club">
       <section id="hero" className="relative min-h-[780px] md:min-h-[860px] flex items-center pb-36 md:pb-44">
         <Wave count={150} className="bottom-0 h-[120px] md:h-[170px] opacity-40 md:opacity-55" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
@@ -34,7 +34,7 @@ export default function Landing() {
               <b>EVM + Michelson</b><span className="sep" />
               <span><b className="text-azure">1</b> atomic tx</span><span className="sep" />
               <span>~500 ms blocks</span><span className="sep" />
-              <span>Hackathon dates <Ph>tbc</Ph></span>
+              <span>Club dates <Ph>tbc</Ph></span>
             </div>
             <div className="mt-9 flex items-center gap-3 flex-wrap">
               <Link to="/nac#quickstart" className="pill bg-royal text-white font-semibold px-6 py-3.5">Start building</Link>
@@ -110,7 +110,7 @@ export default function Landing() {
             <div className="orb w-[420px] h-[420px] bg-royal/45 -right-24 -top-32" />
             <div className="relative">
               <div className="flex items-center gap-2 mb-4">
-                <span className="pill bg-azure/15 text-azure text-xs font-semibold px-3 py-1">For hackathon builders</span>
+                <span className="pill bg-azure/15 text-azure text-xs font-semibold px-3 py-1">For club members</span>
                 <Ph>terms tbc</Ph>
               </div>
               <h2 className="h-sec text-3xl md:text-5xl">Free Claude sub <b>by ypsono.</b></h2>

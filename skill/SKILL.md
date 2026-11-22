@@ -30,7 +30,7 @@ This skill covers Tezos L1, the Etherlink EVM interface, and Tezos X (EVM and Mi
 - One rollup kernel, one ledger, two interfaces
 - EVM precompile `0xff00000000000000000000000000000000000007` and Michelson gateway `KT18oDJJKXMKhfE1bSuAPGp92pYcwVDiqsPw`
 - A call is one transaction. If the callee reverts, the caller can catch it on EVM; Michelson has no try/catch, so the operation reverts
-- Hackathon target: Tezos X Previewnet (EVM chain `128064` / `0x1f440`, Michelson chain `NetXY2oPPzkxUW1`)
+- Builders’ Club network: Tezos X Previewnet (EVM chain `128064` / `0x1f440`, Michelson chain `NetXY2oPPzkxUW1`)
 - Do not use a bridge or wrapped asset when both contracts already live on Tezos X
 
 ## Quick decision tree
