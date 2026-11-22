@@ -23,7 +23,7 @@ const FAQ = [
   { q: 'Is Tezos X a new chain or a bridge?', a: 'Neither in the usual sense: it is one execution layer (built on Etherlink, a Tezos Smart Rollup) where an EVM interface and a Michelson interface share a single ledger. Cross interface calls happen inside the same kernel and block.', open: true },
   { q: 'What happens if the other side fails?', a: 'The whole transaction reverts on both sides; the EVM caller can catch the revert.' },
   { q: 'Do I need two wallets?', a: 'Usually MetaMask plus a Tezos wallet (each with its own balance). The Tezos X Wallet offers one account for both interfaces.' },
-  { q: 'Is it on mainnet?', a: 'Per tezos.com the Michelson interface and NAC activated on Etherlink mainnet in Aug 2026 (Ganesha). The hackathon targets Previewnet.' },
+  { q: 'Is it on mainnet?', a: 'Per tezos.com the Michelson interface and NAC activated on Etherlink mainnet in Aug 2026 (Ganesha). The club builds on Previewnet.' },
   { q: 'Can Previewnet be reset?', a: 'Yes. It was reset on July 20, 2026. Check the Previewnet dashboard changelog before relying on deployed state.' },
 ]
 

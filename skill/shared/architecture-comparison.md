@@ -31,7 +31,7 @@ Moving XTZ or FA tokens between L1 and Etherlink is a bridge (two ledgers, not a
 ## When to choose Tezos X
 - One user action must update EVM state and Michelson state together
 - You want a Solidity door on a Michelson core, or the reverse
-- You are on Previewnet for the hackathon, or on Etherlink mainnet after Ganesha
+- You are on Previewnet for the Builders’ Club, or on Etherlink mainnet after Ganesha
 
 ## Hybrid that is still a bridge
 

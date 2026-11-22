@@ -38,12 +38,12 @@ export function Ph({ children }: { children: string }) {
   return <span className="ph">{children}</span>
 }
 
-export function Logo({ hackathon = true }: { hackathon?: boolean }) {
+export function Logo({ club = true }: { club?: boolean }) {
   return (
     <Link to="/" className="flex items-center gap-2 font-bold tracking-tight">
       <span className="w-7 h-7 rounded-full bg-white text-ink grid place-items-center text-sm font-extrabold">ꜩ</span>
       Tezos X
-      {hackathon ? <span className="text-muted font-normal hidden sm:inline">Hackathon</span> : null}
+      {club ? <span className="text-muted font-normal hidden sm:inline">Builders’ Club</span> : null}
     </Link>
   )
 }
@@ -173,7 +173,7 @@ function MobileHeader() {
   const home = pathname === '/'
   return (
     <div className="md:hidden flex items-center justify-between px-5 pt-5 relative z-20">
-      <Logo hackathon={false} />
+      <Logo club={false} />
       {home ? (
         <Link to="/nac#quickstart" className="glass-soft pill px-3 py-1.5 text-xs flex items-center gap-1.5">
           Quickstart <ArrowUpRight className="w-3.5 h-3.5" />
@@ -219,7 +219,7 @@ export function Footer() {
           <span className="icon-c bg-white text-ink"><Handshake className="w-5 h-5" /></span>
           <div className="flex-1 min-w-0">
             <div className="font-semibold text-sm">Become a partner</div>
-            <div className="text-xs text-muted">Sponsor, offer bounties, mentor or judge the Tezos X hackathon.</div>
+            <div className="text-xs text-muted">Sponsor, offer bounties, or mentor members of the Tezos X Builders’ Club.</div>
           </div>
           <span className="hidden sm:flex pill bg-white/10 px-4 py-2 text-sm font-medium items-center gap-1.5 whitespace-nowrap">Partner with us <ArrowRight className="w-4 h-4" /></span>
           <ArrowRight className="w-5 h-5 sm:hidden text-muted" />
@@ -254,7 +254,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 font-semibold">
               <span className="w-6 h-6 rounded-full bg-white text-ink grid place-items-center text-xs font-extrabold">ꜩ</span>
-              Tezos X Hackathon
+              Tezos X Builders’ Club
             </div>
             <p className="text-xs text-muted mt-2">Tracks & prizes <Ph>tbc</Ph></p>
             <div className="tl grid-cols-4 mt-5 text-[11px]">

@@ -65,7 +65,7 @@ export default function ClaudePage() {
             <Ph>terms tbc</Ph>
           </div>
           <h1 className="h-sec text-[40px] md:text-6xl">Free Claude sub <b>by ypsono.</b></h1>
-          <p className="text-muted mt-5 md:text-lg">For builders shipping on Tezos X Previewnet. Tell us what you want to build and what you have built before. Selected applicants get a Claude subscription for the hackathon.</p>
+          <p className="text-muted mt-5 md:text-lg">For members shipping on Tezos X Previewnet. Tell us what you want to build and what you have built before. Selected applicants get a Claude subscription while they are in the club.</p>
           <div className="meta mt-5">
             <b>Free</b><span className="sep" />
             <span>Limited seats <Ph>tbc</Ph></span><span className="sep" />
@@ -127,11 +127,11 @@ export default function ClaudePage() {
             </div>
             <div>
               <label className="text-sm font-medium" htmlFor="prev">What have you built before?</label>
-              <textarea id="prev" rows={3} value={prior} onChange={(event) => setPrior(event.target.value)} className="field w-full mt-2 px-4 py-3.5 text-sm placeholder:text-white/30" placeholder="Links to GitHub, deployed dApps, hackathon wins…" />
+              <textarea id="prev" rows={3} value={prior} onChange={(event) => setPrior(event.target.value)} className="field w-full mt-2 px-4 py-3.5 text-sm placeholder:text-white/30" placeholder="Links to GitHub, deployed dApps, past builds…" />
             </div>
             <label className="flex items-start gap-3 text-xs text-muted">
               <input type="checkbox" className="mt-0.5 accent-[#7fa8ff]" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
-              I agree to be contacted about the perk and the Tezos X hackathon. <Ph>privacy copy tbc</Ph>
+              I agree to be contacted about the perk and the Tezos X Builders’ Club. <Ph>privacy copy tbc</Ph>
             </label>
             <input tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" value={fax} onChange={(event) => setFax(event.target.value)} name={HONEYPOT} />
             <div className="flex items-center justify-between gap-4 pt-1">

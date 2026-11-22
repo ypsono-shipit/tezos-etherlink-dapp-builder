@@ -46,7 +46,7 @@ export default function UseCases() {
           ) : (
             <div className="text-muted">No ideas match.</div>
           )}
-          <p className="text-xs text-muted mt-6">Ideas are suggestions for the hackathon, not existing products. Each one uses a gateway call that works on Previewnet today.</p>
+          <p className="text-xs text-muted mt-6">Ideas are suggestions for club members, not existing products. Each one uses a gateway call that works on Previewnet today.</p>
         </div>
       </section>
       <section className="relative py-10">

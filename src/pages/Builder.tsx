@@ -119,7 +119,7 @@ export default function Builder() {
           Tezos <span style={{ color: '#7fa8ff' }}>Skills</span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, fontSize: 14 }}>
-          <Link to="/" style={{ color: '#8a90a6' }}>Hackathon</Link>
+          <Link to="/" style={{ color: '#8a90a6' }}>Builders’ Club</Link>
           <a href="https://docs.etherlink.com" style={{ color: '#8a90a6' }}>Docs</a>
           <a href={REPO} style={{ color: '#8a90a6' }}>GitHub</a>
           <a href="https://tezos.com" style={{ background: '#2f5bff', color: '#fff', padding: '7px 16px', borderRadius: 8, fontWeight: 600 }}>Tezos.com</a>

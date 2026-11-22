@@ -1,6 +1,6 @@
-# Tezos X hackathon site and dApp Builder skill
+# Tezos X Builders’ Club and dApp Builder skill
 
-The marketing site for the Tezos X hackathon, plus the Tezos / Etherlink / Tezos X agent skill. Vite, React, TypeScript, and Tailwind. Deployed on Vercel.
+The marketing site for the Tezos X Builders’ Club, plus the Tezos / Etherlink / Tezos X agent skill. Vite, React, TypeScript, and Tailwind. Deployed on Vercel.
 
 ## Routes
 
@@ -89,11 +89,11 @@ npx skills add https://github.com/ypsono-shipit/tezos-etherlink-dapp-builder
 ## Open items
 
 - Form storage destination is undecided. The default adapter only logs.
-- Hackathon dates, tracks, prizes, and the Claude perk terms are still TBC on the site. Nothing was invented for them.
+- Club dates, tracks, prizes, and the Claude perk terms are still TBC on the site. Nothing was invented for them.
 - There are no partners, so the site has no partner names or logos.
 - Etherlink Shadownet EVM chain id 127823 and its RPC were not re-read from a live network table (`/network-information` returned 404). Fee constants in `skill/etherlink/references/gas-and-fees.md` were not reconfirmed because the fees page returned an empty body.
 - The L1 bridge deposit contract in the bridging guide is the April 2026 address and was not reconfirmed.
 - No package named `tx-codec` was found. The skill points at `@tezos-x/octez.js-michel-codec`.
-- Ticket issuance is not a hackathon idea on the site. The Michelson compatibility page still lists tickets as not implemented on the Etherlink Michelson interface.
+- Ticket issuance is not a club idea on the site. The Michelson compatibility page still lists tickets as not implemented on the Etherlink Michelson interface.
 - Ganesha's activation date is from Tezos Spotlight and The Baking Sheet, not from a date line on docs.etherlink.com.
 - Turnstile or hCaptcha is not wired. Spam protection is the honeypot plus the rate limit.
