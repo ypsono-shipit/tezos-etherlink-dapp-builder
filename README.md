@@ -91,7 +91,6 @@ npx skills add https://github.com/ypsono-shipit/tezos-etherlink-dapp-builder
 - Form storage destination is undecided. The default adapter only logs.
 - Hackathon dates, tracks, prizes, and the Claude perk terms are still TBC on the site. Nothing was invented for them.
 - There are no partners, so the site has no partner names or logos.
-- Organizer and legal footer copy is still a placeholder.
 - Etherlink Shadownet EVM chain id 127823 and its RPC were not re-read from a live network table (`/network-information` returned 404). Fee constants in `skill/etherlink/references/gas-and-fees.md` were not reconfirmed because the fees page returned an empty body.
 - The L1 bridge deposit contract in the bridging guide is the April 2026 address and was not reconfirmed.
 - No package named `tx-codec` was found. The skill points at `@tezos-x/octez.js-michel-codec`.
