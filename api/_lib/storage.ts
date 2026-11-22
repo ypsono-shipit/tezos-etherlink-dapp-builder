@@ -1,5 +1,5 @@
 import { createHash, createSign } from 'node:crypto'
-import type { ClaudeApplication, PartnerApplication } from '../../src/lib/validate.ts'
+import type { ClaudeApplication, PartnerApplication } from '../../src/lib/validate.js'
 
 export type StoredKind = 'claude' | 'partner'
 

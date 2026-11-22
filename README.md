@@ -41,7 +41,7 @@ npm run preview
 
 ### Storage is not chosen yet
 
-`FORM_STORAGE` picks the adapter in `api/lib/storage.ts`. The default is `log`: the function prints the submission and does not persist it. `noop` accepts it and discards the payload. Do not put secrets in the repo. Copy `.env.example`.
+`FORM_STORAGE` picks the adapter in `api/_lib/storage.ts`. The default is `log`: the function prints the submission and does not persist it. `noop` accepts it and discards the payload. Do not put secrets in the repo. Copy `.env.example`.
 
 **Google Sheets** (`FORM_STORAGE=sheets`)
 
@@ -57,7 +57,7 @@ npm run preview
 1. Create two databases and share them with an internal integration.
 2. Set `NOTION_TOKEN`, `NOTION_CLAUDE_DATABASE_ID`, and `NOTION_PARTNER_DATABASE_ID`.
 3. Properties the adapter writes: `Name` (title), `Email` (email), and rich text fields `Wallet`, `WalletType`, `XHandle`, `BuildIdea`, `PriorWork`, `Status` on the Claude database. Partner database: `Name`, `Email`, `ApplicantType`, `Org`, `Role`, `XHandle`, `Website`, `PartnershipTypes`, `Message`, `Status`.
-4. Rename those properties in `api/lib/storage.ts` if your database uses different names.
+4. Rename those properties in `api/_lib/storage.ts` if your database uses different names.
 
 **Postgres** (`FORM_STORAGE=postgres`)
 

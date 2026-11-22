@@ -1,4 +1,4 @@
-import { dispatch } from './lib/apply.ts'
+import { dispatch } from './_lib/apply.js'
 
 type Req = {
   method?: string
