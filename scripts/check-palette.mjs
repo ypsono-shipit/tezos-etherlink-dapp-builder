@@ -15,7 +15,7 @@ function files(path, out = []) {
     }
     return out
   }
-  if (/\.(png|jpg|jpeg|webp|woff2?|map)$/.test(path)) return out
+  if (/\.(png|jpg|jpeg|webp|gif|mp4|webm|woff2?|map)$/.test(path)) return out
   out.push(path)
   return out
 }

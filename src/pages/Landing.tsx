@@ -21,9 +21,8 @@ export default function Landing() {
       <section id="hero" className="relative min-h-[780px] md:min-h-[860px] flex items-center pb-36 md:pb-44">
         <Wave count={150} className="bottom-0 h-[120px] md:h-[170px] opacity-40 md:opacity-55" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
-        <div className="orb w-[340px] h-[340px] md:w-[620px] md:h-[620px] bg-royal/60 top-[470px] -right-24 md:right-[8%] md:top-10" />
         <div className="orb w-[240px] h-[240px] md:w-[380px] md:h-[380px] bg-[#1d2fb8]/40 top-[10%] md:top-[45%] -left-40" />
-        <div className="relative mx-auto max-w-6xl w-full px-5 md:px-6 pt-8 md:pt-24 grid md:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+        <div className="relative mx-auto max-w-6xl w-full px-5 md:px-6 pt-8 md:pt-24 grid md:grid-cols-[minmax(0,1fr)_560px] gap-10 items-center">
           <div>
             <Link to="/nac#quickstart" className="inline-flex items-center gap-2.5 pill bg-azure/10 border border-azure/40 pl-2 pr-4 py-2 text-sm font-semibold text-azure mb-7 shadow-[0_0_40px_rgba(127,168,255,.18)]">
               <span className="relative flex w-6 h-6 rounded-full bg-azure/20 items-center justify-center"><span className="w-2.5 h-2.5 rounded-full bg-azure pulse" /></span>
@@ -45,40 +44,12 @@ export default function Landing() {
               </a>
             </div>
           </div>
-          <div className="relative h-[400px] md:h-[460px]">
-            <div className="absolute inset-x-6 top-0 md:top-6 card-grad grain p-6 rotate-[-6deg] opacity-60 h-[220px]" />
-            <div className="absolute inset-x-0 top-10 md:top-16 card-grad grain p-6 h-[230px] flex flex-col justify-between">
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="text-xs text-white/70">Network</div>
-                  <div className="text-xl font-bold">Tezos X Previewnet</div>
-                </div>
-                <span className="pill bg-white/15 px-2.5 py-1 text-[11px] font-semibold flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-azure pulse" />LIVE</span>
-              </div>
-              <div className="mono text-[17px] md:text-lg tracking-widest text-white/90">0xff00 ···· ···· 0007</div>
-              <div className="flex justify-between items-end text-sm">
-                <div><div className="text-[11px] text-white/60">EVM chain ID</div><div className="font-semibold mono">128064</div></div>
-                <div><div className="text-[11px] text-white/60">Michelson chain ID</div><div className="font-semibold mono">NetXY2oPPzkxUW1</div></div>
-                <div className="flex"><span className="w-7 h-7 rounded-full bg-white/80" /><span className="w-7 h-7 rounded-full bg-azure/90 -ml-3" /></div>
-              </div>
-            </div>
-            <div className="absolute left-0 md:-left-8 right-8 md:right-auto md:w-[300px] bottom-0 glass p-4">
-              <div className="flex items-center justify-between mb-3"><span className="text-sm font-semibold">Last atomic call</span><span className="text-[11px] text-muted">same block</span></div>
-              <div className="flex items-center gap-3 py-2">
-                <span className="icon-c bg-royal/25 text-[#8fb0ff]"><Hexagon className="w-5 h-5" /></span>
-                <div className="flex-1"><div className="text-sm font-medium">EVM · callMichelson()</div><div className="text-xs text-muted">Solidity forwarder</div></div>
-                <span className="text-azure text-sm font-semibold">✓</span>
-              </div>
-              <div className="flex items-center gap-3 py-2">
-                <span className="icon-c bg-azure/15 text-azure"><Box className="w-5 h-5" /></span>
-                <div className="flex-1"><div className="text-sm font-medium">Michelson · %increment</div><div className="text-xs text-muted">KT1… counter</div></div>
-                <span className="text-azure text-sm font-semibold">+1</span>
-              </div>
-            </div>
-            <div className="hidden md:block absolute right-0 bottom-10 glass px-4 py-3 text-center">
-              <div className="text-[11px] text-muted">Atomic</div>
-              <div className="text-2xl font-extrabold">1 <span className="text-sm font-medium text-muted">tx</span></div>
-            </div>
+          <div className="hero-logo order-first md:order-none mx-auto md:mx-0 md:justify-self-end" aria-hidden="true">
+            <video autoPlay muted loop playsInline preload="auto" poster="/hero/tezos-ascii-poster.jpg">
+              <source src="/hero/tezos-ascii.webm" type="video/webm" />
+              <source src="/hero/tezos-ascii.mp4" type="video/mp4" />
+            </video>
+            <img className="hero-logo-still" src="/hero/tezos-ascii-poster.jpg" alt="" />
           </div>
         </div>
       </section>
