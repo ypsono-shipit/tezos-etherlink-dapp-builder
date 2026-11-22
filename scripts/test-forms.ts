@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
-import { handleApply, dispatch } from '../api/lib/apply.ts'
-import { clearMemoryLog, readMemoryLog } from '../api/lib/storage.ts'
-import { resetRateLimits } from '../api/lib/ratelimit.ts'
+import { handleApply, dispatch } from '../api/_lib/apply.ts'
+import { clearMemoryLog, readMemoryLog } from '../api/_lib/storage.ts'
+import { resetRateLimits } from '../api/_lib/ratelimit.ts'
 
 process.env.FORM_STORAGE = 'log'
 

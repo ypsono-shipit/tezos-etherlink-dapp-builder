@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto'
-import { honeypotTripped, validateClaude, validatePartner, type ClaudeApplication, type PartnerApplication } from '../../src/lib/validate.ts'
-import { allow } from './ratelimit.ts'
-import { hashIp, saveRecord, type StoredKind } from './storage.ts'
+import { honeypotTripped, validateClaude, validatePartner, type ClaudeApplication, type PartnerApplication } from '../../src/lib/validate.js'
+import { allow } from './ratelimit.js'
+import { hashIp, saveRecord, type StoredKind } from './storage.js'
 
 export type ApplyResult = { status: number; body: { ok: boolean; error?: string; id?: string } }
 

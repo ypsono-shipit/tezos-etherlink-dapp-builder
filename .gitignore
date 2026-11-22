@@ -1,5 +1,6 @@
 node_modules
 dist
+.api-build
 .env
 .env.local
 .DS_Store

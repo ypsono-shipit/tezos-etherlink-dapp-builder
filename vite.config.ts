@@ -39,7 +39,7 @@ function apiDev(): Plugin {
           const outfile = resolve(root, 'node_modules/.cache/tezosx-api.mjs')
           mkdirSync(dirname(outfile), { recursive: true })
           await build({
-            entryPoints: [resolve(root, 'api/lib/apply.ts')],
+            entryPoints: [resolve(root, 'api/_lib/apply.ts')],
             bundle: true,
             platform: 'node',
             format: 'esm',
