@@ -1,5 +1,11 @@
 {
+  "headers": [
+    {
+      "source": "/og-image.png",
+      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+    }
+  ],
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/((?!api/)(?!.*\\.).*)", "destination": "/index.html" }
   ]
 }
