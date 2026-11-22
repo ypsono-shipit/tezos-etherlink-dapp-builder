@@ -1,23 +1,23 @@
-# Deployment Checklist — Tezos L1
+# Deployment checklist, Tezos L1
 
 ## Phase 1: Local Development
 - [ ] Contracts compile in SmartPy IDE or via `taq compile`
 - [ ] All `@sp.add_test` scenarios pass
 - [ ] Edge cases covered (zero amounts, unauthorized callers, max storage)
 
-## Phase 2: Ghostnet Testnet
-```bash
-# With Taqueria
-taq deploy MyContract --env ghostnet
+## Phase 2: Shadownet
+Ghostnet has been removed. Use Shadownet (https://docs.tezos.com/developing/testnets).
 
-# With octez-client
-octez-client -E https://rpc.ghostnet.teztnets.com \
+```bash
+taq deploy MyContract --env shadownet
+
+octez-client -E https://rpc.shadownet.teztnets.com \
   originate contract MyContract transferring 0 from myWallet \
   running MyContract.tz --init '...' --burn-cap 0.5
 ```
 - [ ] Contract deployed and address recorded
-- [ ] Verify on https://ghostnet.tzkt.io
-- [ ] All entry points called via frontend on Ghostnet
+- [ ] Verify on the Shadownet explorer linked from https://teztnets.com/
+- [ ] All entry points called via frontend on Shadownet
 - [ ] Beacon wallet connection tested (Temple / Kukai)
 - [ ] Error states tested (wrong caller, insufficient balance)
 
@@ -42,4 +42,11 @@ taq deploy MyContract --env mainnet
 | Network | RPC | Explorer |
 |---|---|---|
 | Mainnet | https://rpc.tzbeta.net | https://tzkt.io |
-| Ghostnet | https://rpc.ghostnet.teztnets.com | https://ghostnet.tzkt.io |
+| Shadownet | https://rpc.shadownet.teztnets.com | see https://teztnets.com/ |
+
+## Sources and last verified
+
+Verified November 22, 2026.
+
+- https://docs.tezos.com/developing/testnets
+- https://docs.tezos.com/developing/octez-client/installing

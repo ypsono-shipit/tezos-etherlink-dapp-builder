@@ -1,0 +1,15 @@
+import { dispatch } from './lib/apply.ts'
+
+type Req = {
+  method?: string
+  body?: unknown
+  headers: Record<string, string | string[] | undefined>
+}
+
+type Res = {
+  status: (code: number) => { json: (body: unknown) => void }
+}
+
+export default function handler(req: Req, res: Res) {
+  return dispatch('claude', req, res)
+}

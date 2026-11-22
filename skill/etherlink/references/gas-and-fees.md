@@ -1,6 +1,8 @@
-# Gas & Fees on Etherlink
+# Gas and fees on Etherlink
 
 > **Source:** https://docs.etherlink.com/network/fees/
+
+The constants below (1 gwei minimum base fee, 30,000,000 block gas, inclusion fee `0.000004 XTZ × (150 + data bytes + access list bytes)`, priority fee ignored) come from the April 2026 skill. On November 22, 2026 a fetch of that fees URL returned an empty body, so the numbers were **not** reconfirmed. The two part model itself (execution gas plus an L1 inclusion fee bundled into `eth_estimateGas`) is still the right mental model and is what the Etherlink sub-skill tells agents to follow. Re-read the live page before hardcoding a formula.
 
 Etherlink has a **two-part fee model** that differs meaningfully from standard EVM chains. Underestimating gas — especially in deployment scripts and complex transactions — is the most common cause of reverts and failed deploys on Etherlink.
 
@@ -111,3 +113,12 @@ EIP-2930 access lists increase the inclusion fee linearly. If you're specifying 
 | Deploy succeeds on Shadownet but fails on mainnet | Mainnet has more state → larger access list → higher inclusion fee | Re-estimate on mainnet before deploy |
 | Estimate much higher than Ethereum equivalent | Normal — inclusion fee is bundled in | Do not cap it, trust the estimate |
 | Priority fee bump has no effect | Sequencer ignores `max_priority_fee_per_gas` | Don't bother bumping it |
+
+## Sources and last verified
+
+Verified November 22, 2026. Procedural steps in this file were carried forward from the April 2026 skill and were not re-derived line by line. Network names were updated where the file is a checklist that used to say Ghostnet. Prefer the live doc if a command disagrees.
+
+- https://docs.etherlink.com/
+- https://docs.tezos.com/
+- https://octez-js.tezos.com/docs/25.0.0/migration_from_taquito/
+- https://docs.etherlink.com/michelson/developing/compatibility

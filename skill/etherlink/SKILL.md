@@ -1,27 +1,29 @@
 ---
 name: etherlink-dapp-builder
-description: Expert Etherlink EVM dApp developer. Activate for Solidity smart contracts, Hardhat/Foundry tooling, viem/ethers.js frontend integration, MetaMask/WalletConnect, ERC-20/ERC-721/ERC-1155 tokens, and deployment to Etherlink mainnet (chain 42793) or Shadownet testnet (chain 127823). Provides complete copy-paste-ready code with step-by-step deployment instructions.
-version: 1.0
-last_updated: April 2026
-chain: Etherlink (EVM L2)
+description: Expert Etherlink EVM dApp developer. Activate for Solidity smart contracts, Hardhat/Foundry, viem/ethers.js, MetaMask/WalletConnect, ERC20/ERC721/ERC1155, and deployment to Etherlink mainnet (chain 42793) or Shadownet (chain 127823). For calls into the Michelson interface, use the Tezos X sub-skill instead.
+version: 3.0
+last_updated: November 2026
+chain: Etherlink (EVM interface of the Tezos X execution layer)
 ---
 
 # Etherlink EVM dApp Builder
 
-You are an expert in building production-ready dApps on **Etherlink** — the EVM-compatible L2 built on Tezos Smart Rollups with XTZ as the native gas token.
+Etherlink is a Tezos Smart Rollup execution layer. The EVM interface is the Solidity side: same tooling as Ethereum, gas token XTZ (18 decimals), chain id 42793 on mainnet. Since Ganesha, the same rollup also runs a Michelson interface. A call from one interface to the other is native atomic composability, documented in `../tezos-x/SKILL.md`, not in this file.
 
-## When to Use This Skill
-- Writing Solidity smart contracts for Etherlink
-- Deploying with Hardhat or Foundry
-- Building React/Next.js frontends with viem or ethers.js
-- Working with ERC-20 / ERC-721 / ERC-1155 standards
-- MetaMask or WalletConnect integration
-- Porting existing Ethereum contracts to Etherlink
+## When to use this skill
+- Solidity on the EVM interface
+- Hardhat or Foundry
+- viem v2 or ethers.js v6
+- MetaMask or WalletConnect
+- ERC20 / ERC721 / ERC1155
+- Porting an Ethereum contract onto Etherlink
+
+If the contract must call Michelson in the same transaction, stop and open `../tezos-x/SKILL.md`.
 
 ## Stack
 | Layer | Tool |
 |---|---|
-| Smart contracts | Solidity ^0.8.20+ |
+| Contracts | Solidity ^0.8.20 |
 | Tooling | Hardhat or Foundry |
 | Frontend | viem v2 or ethers.js v6 |
 | Wallet | MetaMask, WalletConnect, Rabby |
@@ -29,18 +31,21 @@ You are an expert in building production-ready dApps on **Etherlink** — the EV
 | Mainnet | Etherlink (chain 42793) |
 | Explorer | https://explorer.etherlink.com |
 
-## Network Quick Reference
-See `references/network-info.md` for full RPC/chain details.
+## Network quick reference
+See `references/network-info.md`.
+
 ```
-Mainnet: RPC https://node.mainnet.etherlink.com  | chainId 42793
-Shadownet: RPC https://node.shadownet.etherlink.com | chainId 127823
-Native token: XTZ (18 decimals)  
+Mainnet:   https://node.mainnet.etherlink.com   chainId 42793
+Shadownet: https://node.shadownet.etherlink.com chainId 127823
+Native token: XTZ (18 decimals)
 Faucet: https://shadownet.faucet.etherlink.com
 ```
 
-## Core Workflows
+Shadownet chain id, RPC, and faucet are carried from the April 2026 skill. The docs getting-started page (November 20, 2026) points at a Network information page that 404'd at `/network-information` on November 22, 2026. Confirm the live page before a production deploy. Previewnet is a different network; do not reuse 42793 there.
 
-### 1. Write & Compile Contracts
+## Workflows
+
+### 1. Compile
 ```bash
 npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
 npx hardhat init
@@ -49,37 +54,41 @@ Full config → `references/hardhat-config.md`
 
 ### 2. Deploy
 ```bash
-npx hardhat run scripts/deploy.js --network shadownet   # testnet first
+npx hardhat run scripts/deploy.js --network shadownet
 npx hardhat run scripts/deploy.js --network etherlinkMainnet
 ```
 
 ### 3. Frontend with viem
-See `references/viem-frontend-guide.md` for:
-- `createPublicClient` + `createWalletClient` setup for Etherlink
-- `client.readContract` / `walletClient.writeContract` patterns
-- MetaMask wallet connection + chain switching
-- `import.meta.env` for contract address config
+`references/viem-frontend-guide.md`: `createPublicClient`, `createWalletClient`, reads, writes, MetaMask chain switch.
 
-### 4. Gas & Fees — read before deploying
-Etherlink has a **two-part fee model**: execution gas + an L1 DA inclusion fee that scales with calldata size. Hardcoded gas limits copied from Ethereum will be too low for contract deployments or large transactions.
+### 4. Gas and fees
+Two parts: execution gas, plus an L1 data-availability inclusion fee that scales with calldata. `eth_estimateGas` returns both. A gas limit copied from Ethereum is too small for large deploys. Priority fees are ignored; the sequencer is first come, first served.
 
-- See `references/gas-and-fees.md` for the full breakdown, practical rules, and a diagnosis table
-- Never hardcode `gas:` on deployment calls — always let `eth_estimateGas` run
-- Add a 1.2–1.3× buffer if manually overriding gas on large deploys
-- Priority fees (`max_priority_fee_per_gas`) are **ignored** — sequencer is FCFS
+- `references/gas-and-fees.md`
+- Do not pass a hardcoded `gas` on deploy. Let `eth_estimateGas` run.
+- The numeric formula in that file (1 gwei base, 30M block gas, `0.000004 XTZ × (150 + bytes)`) is the April 2026 writeup. `https://docs.etherlink.com/network/fees/` returned an empty body on November 22, 2026, so those constants were **not** reconfirmed. Re-read the fees page before relying on them.
 
-### 5. Security & Deployment
-- See `references/security-checklist.md` (Etherlink/Solidity-specific)
-- See `references/deployment-checklist.md` (Etherlink phases)
+### 5. Security and release
+- `references/security-checklist.md`
+- `references/deployment-checklist.md`
 
-## Key Differences from Mainnet Ethereum
-- Gas token is XTZ (not ETH), but same 18 decimals
-- Block time: 500ms–6s (faster than Ethereum)
-- Full EVM — same Solidity, same tooling, just different chain ID + RPC
-- No EIP-4844 blobs (it's a Smart Rollup, not an Optimistic/ZK rollup)
-- Finality inherits from Tezos L1 (~2 min)
-- **L1 DA inclusion fee** adds to every tx — `eth_estimateGas` includes it, but hardcoded limits won't (see `references/gas-and-fees.md`)
+## Differences from Ethereum mainnet
+- Gas token is XTZ, 18 decimals, not ETH
+- Target block time is about 500 ms, with preconfirmation around 50 ms. L1 settlement is about 6 seconds. Source: "What is Etherlink?" and the architecture page, both current as of November 20, 2026. The older "~2 min finality / 500 ms to 6 s blocks" line is out of date.
+- Full EVM for the Solidity interface. Chain id and RPC change; the language does not.
+- No EIP-4844 blobs. Data availability is the inclusion fee above, not blobs.
+- Michelson contracts and NAC are a second interface, not an EVM precompile you can ignore. See `../tezos-x/SKILL.md`.
 
 ## Bridging from Tezos L1
-If the user needs Tezos L1 features too, see `../shared/bridging-xtz-fa-complete-guide.md`.
-For chain choice advice, see `../shared/architecture-comparison.md`.
+L1 ↔ Etherlink asset movement is a bridge: `../shared/bridging-xtz-fa-complete-guide.md`.
+Chain choice: `../shared/architecture-comparison.md`.
+
+## Sources and last verified
+
+Verified November 22, 2026, except the fee constants and the Shadownet EVM triple noted above.
+
+- https://docs.etherlink.com/
+- https://docs.etherlink.com/overview/architecture
+- https://docs.etherlink.com/evm/getting-started
+- https://docs.etherlink.com/overview/native-atomic-composability
+- https://docs.etherlink.com/network/fees/
