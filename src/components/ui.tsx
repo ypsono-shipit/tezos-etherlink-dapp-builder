@@ -291,9 +291,8 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-6 border-t border-white/5 text-xs text-muted flex flex-wrap justify-between gap-2">
-          <span>Organizer & legal <Ph>placeholder</Ph></span>
-          <span>Network data: <code className="mono">github.com/trilitech/tezos-x-previewnet</code></span>
+        <div className="mt-8 pt-6 border-t border-white/5 text-xs text-muted flex justify-end">
+          <span className="max-w-full text-right break-all">Network data: <code className="mono">github.com/trilitech/tezos-x-previewnet</code></span>
         </div>
       </div>
     </footer>
