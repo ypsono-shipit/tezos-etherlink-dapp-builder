@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Landing from './pages/Landing.tsx'
 import Nac from './pages/Nac.tsx'
 import UseCases from './pages/UseCases.tsx'
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/builder" element={<Builder />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <Analytics />
     </>
   )
 }
