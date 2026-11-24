@@ -269,6 +269,14 @@ export const RESOURCES: Resource[] = [
   },
   {
     "g": "Network & tools",
+    "t": "NACBench",
+    "s": "nacbench.thetezos.com",
+    "d": "Live Tezos X NAC workbench: Micheline/ABI codec, Horus 8.0 alias materializer, state diffs and Canary 429 OOG trace debugger.",
+    "ty": "Tool",
+    "u": "https://nacbench.thetezos.com/"
+  },
+  {
+    "g": "Network & tools",
     "t": "octez.js",
     "s": "GitHub · trilitech",
     "d": "TypeScript SDK (Taquito fork) with Tezos X tooling.",
