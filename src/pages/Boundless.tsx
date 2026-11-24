@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { ArrowRight, CalendarCheck, Check, ShieldCheck, Sparkles, Users } from 'lucide-react'
-import { HONEYPOT, validateClaude, type WalletKind } from '../lib/validate.ts'
+import { ArrowRight, CalendarCheck, Check, ShieldCheck, Users } from 'lucide-react'
+import { HONEYPOT, validateBoundless, type WalletKind } from '../lib/validate.ts'
 import { FormPage, Ph, Wave } from '../components/ui.tsx'
 
 const HINTS: Record<WalletKind, [string, string]> = {
@@ -9,7 +9,7 @@ const HINTS: Record<WalletKind, [string, string]> = {
   tz: ['tz1…', 'Michelson interface address: tz1 / tz2 / tz3, 36 characters.'],
 }
 
-export default function ClaudePage() {
+export default function BoundlessPage() {
   const [params] = useSearchParams()
   const idea = params.get('idea') ?? ''
   const [kind, setKind] = useState<WalletKind>('evm')
@@ -27,7 +27,7 @@ export default function ClaudePage() {
   async function onSubmit(event: FormEvent) {
     event.preventDefault()
     const payload = { wallet, email, xHandle: handle, buildIdea: build, priorWork: prior, consent, [HONEYPOT]: fax }
-    const local = validateClaude(payload)
+    const local = validateBoundless(payload)
     if (!local.ok) {
       setError(local.errors.join(' '))
       return
@@ -35,7 +35,7 @@ export default function ClaudePage() {
     setSending(true)
     setError('')
     try {
-      const response = await fetch('/api/claude-apply', {
+      const response = await fetch('/api/boundless-apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -55,19 +55,20 @@ export default function ClaudePage() {
   }
 
   return (
-    <FormPage title="Free Claude sub | Tezos X" backTo="/#perk">
+    <FormPage title="Boundless credits | Tezos X" backTo="/#perk">
       <div className="orb w-[560px] h-[560px] bg-royal/55 -top-32 -left-40 md:left-[5%]" />
       <Wave count={160} mode="wave" className="top-[620px] md:top-auto md:bottom-0 h-[120px] opacity-25 hidden md:flex" />
       <div className="relative mx-auto max-w-6xl px-5 md:px-6 pt-10 md:pt-16 grid md:grid-cols-[.85fr_1.15fr] gap-10 md:gap-14 items-start">
         <div className={`md:sticky md:top-10 ${done ? 'hidden md:block' : ''}`}>
+          <img src="/boundless-logo.png" alt="Boundless" className="w-16 h-16 md:w-20 md:h-20 mb-5" />
           <div className="flex items-center gap-2 mb-5">
             <span className="pill bg-azure/15 text-azure text-xs font-semibold px-3 py-1">Builder perk</span>
             <Ph>terms tbc</Ph>
           </div>
-          <h1 className="h-sec text-[40px] md:text-6xl">Free Claude sub <b>by ypsono.</b></h1>
-          <p className="text-muted mt-5 md:text-lg">For members shipping on Tezos X Previewnet. Tell us what you want to build and what you have built before. Selected applicants get a Claude subscription while they are in the club.</p>
+          <h1 className="h-sec text-[40px] md:text-6xl">Boundless credits <b>for members.</b></h1>
+          <p className="text-muted mt-5 md:text-lg">For members shipping on Tezos X Previewnet. Tell us what you want to build and what you have built before. Selected applicants get a Boundless API key with a credit budget while they are in the club. It works with OpenAI and Anthropic compatible tools like Claude Code, Codex and OpenCode, running open models.</p>
           <div className="meta mt-5">
-            <b>Free</b><span className="sep" />
+            <b>API key</b><span className="sep" />
             <span>Limited seats <Ph>tbc</Ph></span><span className="sep" />
             <span>~2 min to apply</span>
           </div>
@@ -80,7 +81,7 @@ export default function ClaudePage() {
             </div>
           </div>
           <div className="glass mt-8 p-2 divide-y divide-white/5">
-            <div className="flex items-center gap-4 p-4"><span className="icon-c bg-white text-ink"><Sparkles className="w-5 h-5" /></span><div className="flex-1"><div className="font-semibold text-sm">What you get</div><div className="text-xs text-muted">Claude subscription · duration <Ph>tbc</Ph></div></div></div>
+            <div className="flex items-center gap-4 p-4"><span className="icon-c bg-ink border border-white/10"><img src="/boundless-logo.png" alt="" className="w-7 h-7" /></span><div className="flex-1"><div className="font-semibold text-sm">What you get</div><div className="text-xs text-muted">Boundless API key · credit budget <Ph>tbc</Ph></div></div></div>
             <div className="flex items-center gap-4 p-4"><span className="icon-c bg-azure/15 text-azure"><Users className="w-5 h-5" /></span><div className="flex-1"><div className="font-semibold text-sm">Seats</div><div className="text-xs text-muted">Limited · number <Ph>tbc</Ph></div></div></div>
             <div className="flex items-center gap-4 p-4"><span className="icon-c bg-royal/25 text-[#8fb0ff]"><CalendarCheck className="w-5 h-5" /></span><div className="flex-1"><div className="font-semibold text-sm">Decisions</div><div className="text-xs text-muted">Rolling, by email <Ph>tbc</Ph></div></div></div>
           </div>

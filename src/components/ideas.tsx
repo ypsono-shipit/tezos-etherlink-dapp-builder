@@ -31,7 +31,7 @@ export function IdeaCard({ idea, index, featured = false, linked = false }: { id
       {linked ? (
         <div className="mt-4 pt-4 border-t border-white/5 flex items-center justify-between text-xs">
           <span className="text-muted mono">{DIR_LABEL[idea.dir]}</span>
-          <Link to={`/claude?idea=${encodeURIComponent(idea.t)}`} className="text-azure font-semibold flex items-center gap-1">
+          <Link to={`/boundless?idea=${encodeURIComponent(idea.t)}`} className="text-azure font-semibold flex items-center gap-1">
             Use idea <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

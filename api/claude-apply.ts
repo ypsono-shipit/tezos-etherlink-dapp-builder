@@ -10,6 +10,8 @@ type Res = {
   status: (code: number) => { json: (body: unknown) => void }
 }
 
+// Older clients still post here. Same handler as /api/boundless-apply, and the
+// sheet tab stays claude_applications.
 export default function handler(req: Req, res: Res) {
-  return dispatch('claude', req, res)
+  return dispatch('boundless', req, res)
 }

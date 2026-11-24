@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto'
-import { honeypotTripped, validateClaude, validatePartner, type ClaudeApplication, type PartnerApplication } from '../../src/lib/validate.js'
+import { honeypotTripped, validateBoundless, validatePartner, type BoundlessApplication, type PartnerApplication } from '../../src/lib/validate.js'
 import { allow } from './ratelimit.js'
 import { hashIp, saveRecord, type StoredKind } from './storage.js'
 
@@ -22,7 +22,7 @@ function fromStorageError(error: unknown): ApplyResult {
   return { status: 502, body: { ok: false, error: 'Storage is not ready. Try again later.' } }
 }
 
-async function persist(kind: StoredKind, ipHash: string, value: ClaudeApplication | PartnerApplication): Promise<ApplyResult> {
+async function persist(kind: StoredKind, ipHash: string, value: BoundlessApplication | PartnerApplication): Promise<ApplyResult> {
   const id = randomUUID()
   try {
     await saveRecord({
@@ -31,7 +31,7 @@ async function persist(kind: StoredKind, ipHash: string, value: ClaudeApplicatio
       createdAt: new Date().toISOString(),
       ipHash,
       status: 'received',
-      claude: kind === 'claude' ? value as ClaudeApplication : undefined,
+      boundless: kind === 'boundless' ? value as BoundlessApplication : undefined,
       partner: kind === 'partner' ? value as PartnerApplication : undefined,
     })
   } catch (error) {
@@ -47,10 +47,10 @@ export async function handleApply(kind: StoredKind, body: unknown, ip: string): 
   const permitted = await allow(`${kind}:${ipHash}`)
   if (!permitted) return { status: 429, body: { ok: false, error: 'Too many attempts. Please wait and try again.' } }
 
-  if (kind === 'claude') {
-    const parsed = validateClaude(body)
+  if (kind === 'boundless') {
+    const parsed = validateBoundless(body)
     if (!parsed.ok) return { status: 400, body: { ok: false, error: parsed.errors.join(' ') } }
-    return persist('claude', ipHash, parsed.value)
+    return persist('boundless', ipHash, parsed.value)
   }
 
   const parsed = validatePartner(body)

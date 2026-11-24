@@ -22,7 +22,7 @@ function apiDev(): Plugin {
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
         const url = req.url?.split('?')[0]
-        if (url !== '/api/claude-apply' && url !== '/api/partner-apply') return next()
+        if (url !== '/api/boundless-apply' && url !== '/api/claude-apply' && url !== '/api/partner-apply') return next()
         try {
           const length = Number(req.headers['content-length'] || 0)
           if (length > 100_000) {
@@ -47,7 +47,7 @@ function apiDev(): Plugin {
             packages: 'external',
           })
           const mod = await import(pathToFileURL(outfile).href + `?t=${Date.now()}`)
-          const kind = url.endsWith('claude-apply') ? 'claude' : 'partner'
+          const kind = url.endsWith('partner-apply') ? 'partner' : 'boundless'
           const result = await mod.handleApply(kind, body, req.socket.remoteAddress || 'local')
           res.statusCode = result.status
           res.setHeader('Content-Type', 'application/json')

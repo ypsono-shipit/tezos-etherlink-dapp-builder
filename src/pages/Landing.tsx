@@ -113,13 +113,14 @@ export default function Landing() {
                 <span className="pill bg-azure/15 text-azure text-xs font-semibold px-3 py-1">For club members</span>
                 <Ph>terms tbc</Ph>
               </div>
-              <h2 className="h-sec text-3xl md:text-5xl">Free Claude sub <b>by ypsono.</b></h2>
-              <p className="text-muted mt-4 max-w-lg">Building on Tezos X Previewnet? Apply for a free Claude subscription to pair program your contracts and dApp. Tell us what you want to build. Selected builders get access.</p>
+              <img src="/boundless-logo.png" alt="Boundless" className="w-14 h-14 md:w-16 md:h-16 mb-4" />
+              <h2 className="h-sec text-3xl md:text-5xl">Boundless credits <b>for members.</b></h2>
+              <p className="text-muted mt-4 max-w-lg">Building on Tezos X Previewnet? Apply for a Boundless API key with a credit budget. It works with OpenAI and Anthropic compatible tools like Claude Code, Codex and OpenCode, running open models. Selected builders get access.</p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Link to="/claude" className="pill bg-white text-ink font-semibold px-6 py-3.5 flex items-center gap-2 whitespace-nowrap">
+                <Link to="/boundless" className="pill bg-white text-ink font-semibold px-6 py-3.5 flex items-center gap-2 whitespace-nowrap">
                   Apply now <ArrowRight className="w-4 h-4" />
                 </Link>
-                <span className="text-xs text-muted">Seats, duration & eligibility <Ph>placeholder</Ph></span>
+                <span className="text-xs text-muted">Seats and eligibility <Ph>placeholder</Ph></span>
               </div>
             </div>
             <div className="relative glass-soft p-5">
@@ -185,10 +186,10 @@ export default function Landing() {
           <div className="glass relative overflow-hidden text-center px-6 pt-12 pb-40 md:pt-16 md:pb-48">
             <Wave count={110} mode="valley" className="bottom-0 h-[150px] md:h-[190px] opacity-70" />
             <h2 className="relative h-sec text-3xl md:text-5xl">Ship what only <b>Tezos X</b> can do.</h2>
-            <p className="relative text-muted mt-3">Previewnet is live. Free Claude subs for selected builders.</p>
+            <p className="relative text-muted mt-3">Previewnet is live. Boundless API credits for selected builders.</p>
             <div className="relative mt-7 flex flex-wrap justify-center gap-3">
               <Link to="/nac#quickstart" className="pill bg-royal text-white font-semibold px-6 py-3.5">Start building</Link>
-              <Link to="/claude" className="pill bg-white text-ink font-semibold px-6 py-3.5">Apply for Claude</Link>
+              <Link to="/boundless" className="pill bg-white text-ink font-semibold px-6 py-3.5">Apply for Boundless</Link>
             </div>
           </div>
         </div>

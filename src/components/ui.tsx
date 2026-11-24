@@ -113,7 +113,7 @@ const NAV = [
   { to: '/', label: 'Home', key: 'home' },
   { to: '/nac', label: 'Composability', key: 'nac' },
   { to: '/usecases', label: 'Use cases', key: 'ideas' },
-  { to: '/claude', label: 'Claude perk', key: 'perk' },
+  { to: '/boundless', label: 'Boundless perk', key: 'perk' },
   { to: '/resources', label: 'Resources', key: 'docs' },
   { to: '/#builder', label: 'dApp Builder', key: 'builder' },
 ]
@@ -140,7 +140,7 @@ function useActiveKey() {
   if (pathname === '/') return 'home'
   if (pathname.startsWith('/nac')) return 'nac'
   if (pathname.startsWith('/usecases')) return 'ideas'
-  if (pathname.startsWith('/claude')) return 'perk'
+  if (pathname.startsWith('/boundless') || pathname.startsWith('/claude')) return 'perk'
   if (pathname.startsWith('/resources')) return 'docs'
   return ''
 }
@@ -193,7 +193,7 @@ function MobileTabs() {
     { to: '/', label: 'Home', key: 'home', icon: Home },
     { to: '/nac', label: 'NAC', key: 'nac', icon: GitMerge },
     { to: '/usecases', label: 'Ideas', key: 'ideas', icon: Lightbulb },
-    { to: '/claude', label: 'Perk', key: 'perk', icon: Sparkles },
+    { to: '/boundless', label: 'Perk', key: 'perk', icon: Sparkles },
     { to: '/resources', label: 'Docs', key: 'docs', icon: Library },
   ]
   return (
@@ -277,7 +277,7 @@ export function Footer() {
             <div className="text-xs text-muted mb-2">Build</div>
             <div className="space-y-1.5">
               <Link className="block" to="/#builder">dApp Builder</Link>
-              <Link className="block" to="/claude">Claude perk</Link>
+              <Link className="block" to="/boundless">Boundless perk</Link>
               <a className="block" href="https://previewnet.tezosx.nomadic-labs.com/">Previewnet dashboard</a>
               <Link className="block" to="/partners">Become a partner</Link>
             </div>
