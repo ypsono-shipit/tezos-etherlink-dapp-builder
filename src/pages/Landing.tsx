@@ -113,8 +113,13 @@ export default function Landing() {
                 <span className="pill bg-azure/15 text-azure text-xs font-semibold px-3 py-1">For club members</span>
                 <Ph>terms tbc</Ph>
               </div>
-              <img src="/boundless-logo.png" alt="Boundless" className="w-14 h-14 md:w-16 md:h-16 mb-4" />
-              <h2 className="h-sec text-3xl md:text-5xl">Boundless credits <b>for members.</b></h2>
+              <h2 className="h-sec text-3xl md:text-5xl">
+                <span className="inline-flex items-baseline whitespace-nowrap">
+                  <img src="/boundless-logo.png" alt="" className="h-[1cap] w-auto mr-[0.18em]" />
+                  Boundless
+                </span>{' '}
+                credits <b>for members.</b>
+              </h2>
               <p className="text-muted mt-4 max-w-lg">Building on Tezos X Previewnet? Apply for a Boundless API key with a credit budget. It works with OpenAI and Anthropic compatible tools like Claude Code, Codex and OpenCode, running open models. Selected builders get access.</p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <Link to="/boundless" className="pill bg-white text-ink font-semibold px-6 py-3.5 flex items-center gap-2 whitespace-nowrap">

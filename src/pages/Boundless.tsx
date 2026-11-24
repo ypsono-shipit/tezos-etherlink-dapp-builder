@@ -60,12 +60,17 @@ export default function BoundlessPage() {
       <Wave count={160} mode="wave" className="top-[620px] md:top-auto md:bottom-0 h-[120px] opacity-25 hidden md:flex" />
       <div className="relative mx-auto max-w-6xl px-5 md:px-6 pt-10 md:pt-16 grid md:grid-cols-[.85fr_1.15fr] gap-10 md:gap-14 items-start">
         <div className={`md:sticky md:top-10 ${done ? 'hidden md:block' : ''}`}>
-          <img src="/boundless-logo.png" alt="Boundless" className="w-16 h-16 md:w-20 md:h-20 mb-5" />
           <div className="flex items-center gap-2 mb-5">
             <span className="pill bg-azure/15 text-azure text-xs font-semibold px-3 py-1">Builder perk</span>
             <Ph>terms tbc</Ph>
           </div>
-          <h1 className="h-sec text-[40px] md:text-6xl">Boundless credits <b>for members.</b></h1>
+          <h1 className="h-sec text-[40px] md:text-6xl">
+            <span className="inline-flex items-baseline whitespace-nowrap">
+              <img src="/boundless-logo.png" alt="" className="h-[1cap] w-auto mr-[0.18em]" />
+              Boundless
+            </span>{' '}
+            credits <b>for members.</b>
+          </h1>
           <p className="text-muted mt-5 md:text-lg">For members shipping on Tezos X Previewnet. Tell us what you want to build and what you have built before. Selected applicants get a Boundless API key with a credit budget while they are in the club. It works with OpenAI and Anthropic compatible tools like Claude Code, Codex and OpenCode, running open models.</p>
           <div className="meta mt-5">
             <b>API key</b><span className="sep" />
