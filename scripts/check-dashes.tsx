@@ -4,9 +4,9 @@ import { MemoryRouter } from 'react-router-dom'
 import { parseHTML } from 'linkedom'
 import App from '../src/App.tsx'
 
-const routes = ['/', '/nac', '/usecases', '/claude', '/partners', '/resources', '/builder']
+const routes = ['/', '/nac', '/usecases', '/boundless', '/claude', '/partners', '/resources', '/builder']
 const dash = /[-–—]/
-const routePath = /\/(nac|usecases|claude|partners|resources|builder)\b/
+const routePath = /\/(nac|usecases|claude|boundless|partners|resources|builder)\b/
 
 function dashExempt(el: Element | null): boolean {
   return Boolean(el?.closest('pre, code, .mono, [data-technical]'))

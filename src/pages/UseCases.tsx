@@ -55,11 +55,11 @@ export default function UseCases() {
             <div className="orb w-72 h-72 bg-royal/40 -right-10 -top-20" />
             <div className="relative">
               <div className="text-2xl font-bold">Picked an idea?</div>
-              <p className="text-muted text-sm mt-1">Set up Previewnet, scaffold it with the dApp Builder, and apply for the Claude perk.</p>
+              <p className="text-muted text-sm mt-1">Set up Previewnet, scaffold it with the dApp Builder, and apply for the Boundless perk.</p>
             </div>
             <div className="relative flex flex-wrap gap-3">
               <Link to="/nac#quickstart" className="pill bg-royal text-white font-semibold px-5 py-3">Quickstart</Link>
-              <Link to="/claude" className="pill bg-white text-ink font-semibold px-5 py-3">Apply for Claude</Link>
+              <Link to="/boundless" className="pill bg-white text-ink font-semibold px-5 py-3">Apply for Boundless</Link>
             </div>
           </div>
         </div>

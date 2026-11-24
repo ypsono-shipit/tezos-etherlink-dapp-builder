@@ -1,7 +1,7 @@
 import { createHash, createSign } from 'node:crypto'
-import type { ClaudeApplication, PartnerApplication } from '../../src/lib/validate.js'
+import type { BoundlessApplication, PartnerApplication } from '../../src/lib/validate.js'
 
-export type StoredKind = 'claude' | 'partner'
+export type StoredKind = 'boundless' | 'partner'
 
 export type StoredRecord = {
   id: string
@@ -9,9 +9,12 @@ export type StoredRecord = {
   createdAt: string
   ipHash: string
   status: 'received'
-  claude?: ClaudeApplication
+  boundless?: BoundlessApplication
   partner?: PartnerApplication
 }
+
+// Boundless applications keep this sheet tab name so existing rows stay in place.
+export const CLAUDE_APPLICATIONS_TAB = 'claude_applications'
 
 const memory: StoredRecord[] = []
 
@@ -88,9 +91,14 @@ async function googleToken(email: string, privateKey: string): Promise<string> {
   return json.access_token
 }
 
+export function sheetTab(kind: StoredKind): string {
+  if (kind === 'boundless') return process.env.GOOGLE_SHEETS_CLAUDE_TAB || CLAUDE_APPLICATIONS_TAB
+  return process.env.GOOGLE_SHEETS_PARTNER_TAB || 'partner_applications'
+}
+
 function rowFor(record: StoredRecord): string[] {
-  if (record.kind === 'claude' && record.claude) {
-    const item = record.claude
+  if (record.kind === 'boundless' && record.boundless) {
+    const item = record.boundless
     return [record.id, item.wallet, item.walletType, item.email, item.xHandle, item.buildIdea, item.priorWork, record.createdAt, record.ipHash, record.status]
   }
   const item = record.partner!
@@ -101,9 +109,7 @@ async function saveSheets(record: StoredRecord): Promise<void> {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
   const key = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n')
   const sheetId = process.env.GOOGLE_SHEETS_ID
-  const tab = record.kind === 'claude'
-    ? (process.env.GOOGLE_SHEETS_CLAUDE_TAB || 'claude_applications')
-    : (process.env.GOOGLE_SHEETS_PARTNER_TAB || 'partner_applications')
+  const tab = sheetTab(record.kind)
   if (!email || !key || !sheetId) throw new Error('Google Sheets env is incomplete')
   const token = await googleToken(email, key)
   const range = encodeURIComponent(`${tab}!A1`)
@@ -124,22 +130,22 @@ function rich(value: string) {
 
 async function saveNotion(record: StoredRecord): Promise<void> {
   const token = process.env.NOTION_TOKEN
-  const database = record.kind === 'claude'
+  const database = record.kind === 'boundless'
     ? process.env.NOTION_CLAUDE_DATABASE_ID
     : process.env.NOTION_PARTNER_DATABASE_ID
   if (!token || !database) throw new Error('Notion env is incomplete')
-  const title = record.kind === 'claude'
-    ? record.claude!.email
+  const title = record.kind === 'boundless'
+    ? record.boundless!.email
     : `${record.partner!.name}${record.partner!.org ? ` (${record.partner!.org})` : ''}`
-  const properties: Record<string, unknown> = record.kind === 'claude' && record.claude
+  const properties: Record<string, unknown> = record.kind === 'boundless' && record.boundless
     ? {
         Name: { title: [{ text: { content: title } }] },
-        Wallet: rich(record.claude.wallet),
-        WalletType: rich(record.claude.walletType),
-        Email: { email: record.claude.email },
-        XHandle: rich(record.claude.xHandle),
-        BuildIdea: rich(record.claude.buildIdea),
-        PriorWork: rich(record.claude.priorWork),
+        Wallet: rich(record.boundless.wallet),
+        WalletType: rich(record.boundless.walletType),
+        Email: { email: record.boundless.email },
+        XHandle: rich(record.boundless.xHandle),
+        BuildIdea: rich(record.boundless.buildIdea),
+        PriorWork: rich(record.boundless.priorWork),
         Status: rich(record.status),
       }
     : {
@@ -173,7 +179,7 @@ async function savePostgres(record: StoredRecord): Promise<void> {
   const ssl = /localhost|127\.0\.0\.1/.test(url) ? undefined : 'require' as const
   const sql = postgres(url, { ssl, max: 1 })
   try {
-    if (record.kind === 'claude' && record.claude) {
+    if (record.kind === 'boundless' && record.boundless) {
       await sql`
         create table if not exists claude_applications (
           id text primary key,
@@ -187,7 +193,7 @@ async function savePostgres(record: StoredRecord): Promise<void> {
           ip_hash text not null,
           status text not null
         )`
-      const item = record.claude
+      const item = record.boundless
       await sql`
         insert into claude_applications
           (id, wallet, wallet_type, email, x_handle, build_idea, prior_work, created_at, ip_hash, status)
@@ -220,7 +226,7 @@ async function savePostgres(record: StoredRecord): Promise<void> {
   } catch (error) {
     const code = (error as { code?: string }).code
     if (code === '23505') {
-      const duplicate = new Error(record.kind === 'claude'
+      const duplicate = new Error(record.kind === 'boundless'
         ? 'This email or wallet is already in the queue.'
         : 'This email is already in the queue.')
       ;(duplicate as Error & { status?: number }).status = 409

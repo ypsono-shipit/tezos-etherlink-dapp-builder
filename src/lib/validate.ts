@@ -19,7 +19,7 @@ export type PartnerType = (typeof PARTNER_TYPES)[number]
 export type WalletKind = 'evm' | 'tz'
 export type ApplicantKind = 'company' | 'individual'
 
-export type ClaudeApplication = {
+export type BoundlessApplication = {
   wallet: string
   walletType: WalletKind
   email: string
@@ -69,7 +69,7 @@ function emailOf(raw: string): string {
   return raw.trim().toLowerCase()
 }
 
-export function validateClaude(body: unknown): ValidationOk<ClaudeApplication> | ValidationErr {
+export function validateBoundless(body: unknown): ValidationOk<BoundlessApplication> | ValidationErr {
   if (!isRecord(body)) return { ok: false, errors: ['Send a JSON application.'] }
   const errors: string[] = []
   const wallet = str(body.wallet, 80)
